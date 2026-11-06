@@ -1,0 +1,23 @@
+<!-- @dsCard group="Conteúdo" height=540 width=960 subtitle="Abertura de capítulo com o Ghost sangrando a base (palco 1920 em 1:2)" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0;overflow:hidden}
+  body{background:var(--laranja)}
+  .st{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--laranja);transform-origin:0 0;transform:scale(.5);color:var(--nevoa)}
+  .t{position:absolute;left:216px;right:216px;top:330px;margin:0;text-align:center;font-family:var(--font-sans);font-weight:700;font-size:108px;line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:var(--nevoa);z-index:1}
+  .t em{display:block;font-family:var(--font-serif);font-weight:400;font-style:italic;text-transform:none;color:var(--grafite)}
+  .st .li-chrome{color:var(--nevoa)}
+</style></head>
+<body>
+<div class="st" id="s"><h2 class="t">Desdobramentos <em>do KV para o evento</em></h2></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  var host = document.createElement('div'); document.getElementById('s').appendChild(host);
+  ReactDOM.createRoot(host).render(h(React.Fragment, null,
+    h(L.Ghost, { size: 400 }, h('b', null, 'DO KV À '), h('i', null, 'experiência')),
+    h(L.Chrome, null)));
+</script>
+</body>
+</html>

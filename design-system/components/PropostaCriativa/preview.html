@@ -1,0 +1,107 @@
+<!-- @dsCard group="Apresentações" page height=1660 width=960 subtitle="Roteiro de páginas da proposta criativa, a partir do deck Verão Grupo EMS 2026" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:26px 24px}
+  .mini{position:relative;width:428px;height:240.75px;overflow:hidden;outline:1px solid var(--rule)}
+  .st{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:scale(.22292);overflow:hidden}
+  .cap{margin:10px 0 0;font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink)}
+  .cap span{display:block;font-family:var(--font-sans);font-weight:400;text-transform:none;color:var(--ink-muted);font-size:13px}
+  .lar{background:var(--laranja);color:var(--nevoa)}
+  .nev{background:var(--nevoa);color:var(--grafite)}
+  .abs{position:absolute;margin:0;z-index:1}
+  .hl{font-family:var(--font-sans);font-weight:700;letter-spacing:-.02em;line-height:1;text-transform:uppercase}
+  .hl em{font-family:var(--font-serif);font-weight:400;font-style:italic;text-transform:none}
+  .serif{font-family:var(--font-serif);font-style:italic;font-weight:400;line-height:.9;letter-spacing:-.02em}
+  .b3{font-family:var(--font-sans);font-size:32px;line-height:1.3;letter-spacing:-.01em}
+  .center{left:216px;right:216px;text-align:center}
+  .st .li-chrome{color:var(--ink-muted)}
+  .lar .li-chrome,.dark .li-chrome{color:var(--nevoa)}
+  .fill{position:absolute;inset:0;background-size:cover;background-position:center}
+  .veil{position:absolute;inset:0;background:rgba(18,18,18,.62)}
+  .mood{position:absolute;left:257px;top:259px;width:1406px;height:684px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:12px}
+  .mood div{background-size:cover;background-position:center}
+</style></head>
+<body>
+<div class="wrap" id="w"></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  var IMG = {
+    kv: '/_blob/0e8646d89853edc0eb3fce64685b0eb0',
+    foto: '/_blob/ca54bcb0689f99b322800ee40ff5b429',
+    logo: '/_blob/a2ab74bdcfd7edb966730717755b3910',
+    m: ['/_blob/603fe46792566a534644f8470df1550f', '/_blob/a137a5df41688a3537d2ce2011cd1fde', '/_blob/e99e0ce923c11a8066829a0b69ee69bf', '/_blob/d0d1f171e0cf3fd15fa429845e08d60a', '/_blob/09f141839fc8c452a4b3abcf1d26438b', '/_blob/540ca1f539e4b35f8c034b196941ce89', '/_blob/a7ae22a3fbb00e5eba9d01c33bb73875', '/_blob/0e8646d89853edc0eb3fce64685b0eb0']
+  };
+  function P(cls, kids) { return h.apply(null, ['div', { className: 'st ' + cls }].concat(kids)); }
+  function A(style, kids, cls) { return h('div', { className: 'abs ' + (cls || ''), style: style }, kids); }
+  function logo(top) { return h('img', { className: 'abs', src: IMG.logo, alt: 'LIVEIDEA', style: { left: 866, top: top, width: 187 } }); }
+
+  var pages = [
+    ['Capa padrão LIVEIDEA', 'Sempre a primeira. Igual em toda apresentação.', P('lar', [
+      logo(517), h(L.Ghost, { key: 'g', size: 307 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])],
+    ['Capa do projeto', 'Mesmo esqueleto da capa padrão, com título em duas vozes e o conceito no Ghost.', P('lar', [
+      logo(250),
+      A({ top: 380 }, h('h1', { className: 'hl', style: { margin: 0, fontSize: 108, color: 'var(--nevoa)' } }, 'Verão Grupo EMS 2026', h('em', { style: { display: 'block', color: 'var(--grafite)' } }, 'nova proposta de KV')), 'center'),
+      h(L.Ghost, { key: 'g', size: 400 }, h('b', null, 'SAÚDE '), h('em', null, '&'), ' ENERGIA'), h(L.Chrome, { key: 'c' })])],
+    ['01 · Insight', 'A palavra-chave em serifa gigante à esquerda; eyebrow, headline e body-3xl à direita.', P('nev', [
+      A({ left: 86, top: 274, fontSize: 224, color: 'var(--laranja)' }, '“Saúde!”', 'serif'),
+      A({ left: 108, top: 598, fontSize: 48 }, 'a palavra do brinde', 'serif'),
+      A({ left: 1073, top: 223 }, h(L.Eyebrow, { number: 1 }, 'Insight')),
+      A({ left: 1073, top: 281, width: 749 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 64 } }, 'No Brasil, a gente comemora ', h('em', { style: { color: 'var(--laranja)' } }, 'desejando saúde.'))),
+      A({ left: 1073, top: 554, width: 720, color: 'var(--ink-muted)' }, '“Saúde!” é a palavra do brinde. Para um grupo que trabalha com saúde o ano inteiro, é a única palavra que é, ao mesmo tempo, o trabalho e a festa.', 'b3'),
+      h(L.Chrome, { key: 'c' })])],
+    ['02 · Tese', 'Foto sangrada com véu denso, headline-statement (100px) e body-3xl.', P('dark', [
+      h('div', { key: 'f', className: 'fill', style: { backgroundImage: 'url(' + IMG.foto + ')' } }), h('div', { key: 'v', className: 'veil' }),
+      A({ left: 173, top: 209 }, h(L.Eyebrow, { number: 2, tone: 'ambar' }, 'Tese')),
+      A({ left: 173, top: 266, width: 1570 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 100, color: 'var(--nevoa)' } }, 'O Grupo EMS cuida da saúde o ano todo. No Verão, ele ', h('em', { style: { color: 'var(--ambar)' } }, 'brinda a ela.'))),
+      A({ left: 173, top: 742, width: 1037, color: 'var(--nevoa)' }, 'O Grupo EMS cuida da saúde dos brasileiros o ano todo. No Verão, ele brinda a essa saúde e comemora com quem faz ela acontecer.', 'b3'),
+      h(L.Chrome, { key: 'c' })])],
+    ['03 · Conceito', 'Fundo laranja, nome do conceito, Steps em três tempos e a linha de fechamento.', P('lar', [
+      A({ left: 108, top: 101 }, h(L.Eyebrow, { number: 3, style: { color: 'var(--grafite)' } }, 'Conceito')),
+      A({ left: 108, top: 190 }, h(L.Display, { size: 300, style: { color: 'var(--nevoa)', whiteSpace: 'nowrap' } }, h('b', null, 'SAÚDE '), h('em', null, '& '), h('b', null, 'ENERGIA'))),
+      A({ left: 108, top: 641, width: 1704 }, h(L.Steps, { onColor: true, items: [
+        'Todo brasileiro já desejou “saúde” ao brindar com alguém. É o nosso jeito de dizer “que bom que você está aqui”.',
+        'O Grupo EMS também deseja saúde, de outro jeito: cuidando dos brasileiros, todos os dias.',
+        'Neste Verão, os dois desejos se encontram. A gente levanta o copo para quem faz esse cuidado acontecer.'] })),
+      A({ left: 108, top: 960, fontSize: 32, color: 'var(--nevoa)' }, ['Verão Grupo EMS 2026 — ', h('em', { key: 'e' }, 'Saúde & Energia.')], 'hl'),
+      h(L.Chrome, { key: 'c' })])],
+    ['04 · Moodboard', 'Título à esquerda, descrição curta à direita, mosaico centralizado e nota na base.', P('nev', [
+      A({ left: 108, top: 79 }, h(L.Eyebrow, { number: 4 }, 'Moodboard')),
+      A({ left: 108, top: 125 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 72 } }, 'Referências ', h('em', { style: { color: 'var(--laranja)' } }, 'visuais'))),
+      A({ left: 1094, top: 128, width: 720, fontSize: 24, lineHeight: 1.3, color: 'var(--ink-muted)' }, 'Ilustração vibrante, brinde em primeiro plano, ícones de festa e cor saturada: verão com energia de festival.'),
+      h('div', { key: 'm', className: 'mood' }, IMG.m.map(function (b, i) { return h('div', { key: i, style: { backgroundImage: 'url(' + b + ')' } }); })),
+      A({ left: 108, top: 979, fontSize: 24 }, [h('b', { key: 'b' }, 'Nota: '), 'não serão utilizadas representações de bebidas alcoólicas, apenas de bebidas sem álcool.']),
+      h(L.Chrome, { key: 'c' })])],
+    ['Página de peça', 'KV ou mockup em página inteira, sem texto e sem marcas de borda.', P('dark', [
+      h('div', { key: 'f', className: 'fill', style: { backgroundImage: 'url(' + IMG.kv + ')' } })])],
+    ['05 · O KV', 'KV à esquerda, NumberedList à direita, alinhados no topo.', P('nev', [
+      A({ left: 108, top: 79 }, h(L.Eyebrow, { number: 5 }, 'O KV')),
+      A({ left: 108, top: 125 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 72 } }, 'Cada elemento ', h('em', { style: { color: 'var(--laranja)' } }, 'brinda junto'))),
+      h('div', { key: 'k', className: 'fill', style: { left: 108, top: 281, width: 1022, height: 575, right: 'auto', bottom: 'auto', backgroundImage: 'url(' + IMG.kv + ')' } }),
+      A({ left: 1195, top: 271, width: 619 }, h(L.NumberedList, { items: [
+        { title: 'O sol', text: 'A marca no centro, irradiando a energia do Verão.' },
+        { title: 'O brinde', text: 'Copos com bebida sem álcool e limão.' },
+        { title: 'As mãos', text: 'Tons de pele diferentes: um brinde de todo mundo.' },
+        { title: 'As ondas', text: 'Os azuis do cliente em movimento.' },
+        { title: 'Os ícones', text: 'Pandeiro, caixa de som e espetinho.' }] })),
+      h(L.Chrome, { key: 'c' })])],
+    ['Abertura de capítulo', 'Título em duas vozes centralizado e a frase do capítulo no Ghost.', P('lar', [
+      A({ top: 330 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 108, color: 'var(--nevoa)' } }, 'Desdobramentos', h('em', { style: { display: 'block', color: 'var(--grafite)' } }, 'do KV para o evento')), 'center'),
+      h(L.Ghost, { key: 'g', size: 400 }, h('b', null, 'DO KV À '), h('i', null, 'experiência')), h(L.Chrome, { key: 'c' })])],
+    ['Fechamento', 'A palavra do conceito em serifa gigante, o logo e a assinatura no Ghost.', P('lar', [
+      A({ top: 274, fontSize: 300, color: 'var(--nevoa)' }, 'Saúde!', 'serif center'),
+      logo(641),
+      h(L.Ghost, { key: 'g', size: 307 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])]
+  ];
+
+  ReactDOM.createRoot(document.getElementById('w')).render(h(React.Fragment, null, pages.map(function (pg, i) {
+    return h('figure', { key: i, style: { margin: 0 } },
+      h('div', { className: 'mini' }, pg[2]),
+      h('figcaption', { className: 'cap' }, pg[0], h('span', null, pg[1])));
+  })));
+</script>
+</body>
+</html>

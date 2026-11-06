@@ -28,6 +28,16 @@ export interface ArrowLinkProps extends Base { href: string; children: ReactNode
 /** Selo circular de texto girando. */
 export interface StampProps extends Base { text: string; /** px, padrão 140 */ size?: number; spin?: boolean }
 
+/** Marcador de seção da proposta: 01 · INSIGHT. */
+export interface EyebrowProps extends Base { children: ReactNode; /** número do passo; número vira 01, 02 */ number?: number | string; tone?: "ambar" }
+export interface NumberedItem { title: ReactNode; text?: ReactNode }
+/** Lista numerada com fio: anatomia do KV, elementos, entregáveis. */
+export interface NumberedListProps extends Base { items: NumberedItem[]; /** padrão 1 */ start?: number }
+/** Argumento em colunas numeradas (conceito em três tempos). */
+export interface StepsProps extends Base { items: (ReactNode | { text: ReactNode })[]; /** sobre fundo laranja */ onColor?: boolean }
+/** Título display translúcido sangrando a base da página (capa, abertura, fechamento). */
+export interface GhostProps extends Base { children: ReactNode; /** px, padrão 307 */ size?: number | string }
+
 /** Ícone em traço bold com pontas chatas (grid 24px, traço 2,5px), cor herdada. */
 export type IconName = "seta-direita" | "seta-esquerda" | "seta-diagonal" | "chevron-direita" | "chevron-esquerda" | "chevron-baixo" | "mais" | "fechar" | "check" | "menu" | "play" | "busca" | "link-externo" | "download" | "local" | "calendario" | "relogio" | "pessoas" | "email" | "camera" | "musica" | "microfone" | "talheres" | "hospedagem" | "carro" | "aviao";
 export interface IconProps extends Base { name: IconName; /** px, padrão 24 */ size?: number; title?: string }
@@ -58,3 +68,7 @@ export declare function PressCard(props: PressCardProps): JSX.Element;
 export declare function TeamCard(props: TeamCardProps): JSX.Element;
 export declare function ArrowLink(props: ArrowLinkProps): JSX.Element;
 export declare function Stamp(props: StampProps): JSX.Element;
+export declare function Eyebrow(props: EyebrowProps): JSX.Element;
+export declare function NumberedList(props: NumberedListProps): JSX.Element;
+export declare function Steps(props: StepsProps): JSX.Element;
+export declare function Ghost(props: GhostProps): JSX.Element;

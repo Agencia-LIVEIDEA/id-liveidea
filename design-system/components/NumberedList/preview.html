@@ -1,0 +1,28 @@
+<!-- @dsCard group="Conteúdo" height=620 width=960 subtitle="Anatomia do KV: imagem à esquerda, elementos numerados à direita" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:36px 40px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:start}
+  .kv{aspect-ratio:16/9;background:#1f3a9a url('/_blob/0e8646d89853edc0eb3fce64685b0eb0') center/cover}
+  #a .li-numlist__no{font-size:40px}
+  #a .li-numlist__title,#a .li-numlist__text{font-size:17px}
+  #a .li-numlist__item{grid-template-columns:64px minmax(0,1fr);padding:12px 0}
+</style></head>
+<body>
+<div class="wrap"><div class="kv" role="img" aria-label="KV"></div><div id="a"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.NumberedList, { items: [
+    { title: 'O sol', text: 'A marca no centro, irradiando a energia do Verão.' },
+    { title: 'O brinde', text: 'Copos com bebida sem álcool e limão: o “Saúde!” em imagem.' },
+    { title: 'As mãos', text: 'Tons de pele diferentes: um brinde de todo mundo.' },
+    { title: 'As ondas', text: 'Os azuis do cliente em movimento, clima de verão.' },
+    { title: 'Os ícones', text: 'Pandeiro, caixa de som e espetinho: música e festa.' },
+    { title: 'A tipografia', text: 'Itálica e inclinada: energia em movimento.' }
+  ] }));
+</script>
+</body>
+</html>

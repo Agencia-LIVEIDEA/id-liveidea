@@ -1,0 +1,31 @@
+<!-- @dsCard group="Conteúdo" height=300 width=960 subtitle="Marcador de seção da proposta sobre névoa, laranja e foto" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .row{display:grid;grid-template-columns:repeat(3,1fr)}
+  .cell{padding:40px 32px;min-height:240px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px}
+  .nev{background:var(--nevoa);color:var(--grafite)}
+  .lar{background:var(--laranja);color:var(--grafite)}
+  .gra{background:var(--grafite);color:var(--nevoa)}
+  .t{margin:0;font-family:var(--font-sans);font-weight:700;font-size:32px;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+  .t em{font-family:var(--font-serif);font-weight:400;font-style:italic;text-transform:none}
+  .nev .t em{color:var(--laranja)} .gra .t em{color:var(--ambar)}
+  .lar .t{color:var(--nevoa)}
+</style></head>
+<body>
+<div class="row">
+  <div class="cell nev"><div id="a"></div><p class="t">No Brasil, a gente comemora <em>desejando saúde.</em></p></div>
+  <div class="cell lar"><div id="b"></div><p class="t">Saúde <em>&amp;</em> energia</p></div>
+  <div class="cell gra"><div id="c"></div><p class="t">No Verão, ele <em>brinda a ela.</em></p></div>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Eyebrow, { number: 1 }, 'Insight'));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.Eyebrow, { number: 3, style: { color: 'var(--grafite)' } }, 'Conceito'));
+  ReactDOM.createRoot(document.getElementById('c')).render(h(L.Eyebrow, { number: 2, tone: 'ambar' }, 'Tese'));
+</script>
+</body>
+</html>

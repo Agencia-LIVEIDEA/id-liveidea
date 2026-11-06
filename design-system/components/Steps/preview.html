@@ -1,0 +1,25 @@
+<!-- @dsCard group="Conteúdo" height=370 width=960 subtitle="Conceito em três tempos, sobre laranja" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--laranja);font-family:var(--font-sans)}
+  .wrap{padding:44px 48px}
+  #a .li-steps__text{font-size:20px}
+  #a .li-steps{gap:36px}
+  .close{margin:40px 0 0;font-weight:700;font-size:24px;letter-spacing:-.01em;color:var(--nevoa)}
+  .close em{font-family:var(--font-serif);font-weight:400;font-style:italic}
+</style></head>
+<body>
+<div class="wrap"><div id="a"></div><p class="close">Verão Grupo EMS 2026 — <em>Saúde &amp; Energia.</em></p></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Steps, { onColor: true, items: [
+    'Todo brasileiro já desejou “saúde” ao brindar com alguém. É o nosso jeito de dizer “que bom que você está aqui”.',
+    'O Grupo EMS também deseja saúde, de outro jeito: cuidando dos brasileiros, todos os dias.',
+    'Neste Verão, os dois desejos se encontram. A gente levanta o copo para quem faz esse cuidado acontecer.'
+  ] }));
+</script>
+</body>
+</html>

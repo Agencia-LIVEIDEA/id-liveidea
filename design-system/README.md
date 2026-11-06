@@ -41,8 +41,9 @@ Quatro famílias, cada uma com um papel fixo:
 
 - **A regra da mistura.** Um título display mistura pesos da Acumin na mesma linha: Bold no substantivo, Light Italic na palavra de ligação, Regular no resto ("**IDEIAS** *QUE* GANHAM **VIDA**"). E pode trocar uma palavra por `serif-display` ("REINVENTANDO O *futuro*"). Uma troca por título.
 - Títulos Aeonik (`headline-m`, `pillar-title`) põem o trecho que importa em PP Editorial New Italic: Regular para destaque normal, Ultrabold Italic (`pillar-italic`) nos pilares.
+- **Frase única.** A página que diz uma coisa só (tese, insight, título da capa do projeto) usa `headline-statement`: Aeonik Bold 100px em caixa-alta (até 108px na capa), com o fim da frase em serifa itálica. Até 15 palavras.
 - Números são sempre PP Editorial New (`stat-xl`, `stat-l`, `stat-m`), nunca Aeonik.
-- **Corpo de texto pelo volume.** O texto corrido tem quatro corpos e um por página: `body` (18px) em bios e notas, `body-l` (20px) como padrão, `body-xl` (24px) quando a página tem até 60 palavras e `body-2xl` (28px) para uma frase ou parágrafo de até 25 palavras, sozinho na página ou sobre foto. Quanto menos texto, maior o corpo; nunca o contrário.
+- **Corpo de texto pelo volume.** O texto corrido tem quatro corpos e um por página: `body` (18px) em bios e notas, `body-l` (20px) como padrão, `body-xl` (24px) quando a página tem até 60 palavras e `body-2xl` (28px) para uma frase ou parágrafo de até 25 palavras, sozinho na página ou sobre foto. O `body-3xl` (32px) é só para o texto de apoio de uma página de frase única (tese, insight), abaixo de `headline-statement`, com até 30 palavras. Quanto menos texto, maior o corpo; nunca o contrário.
 - **Subtítulo de big number.** O número que é o assunto da página (`stat-xl`, ou `stat-l` sozinho ou sobre foto) leva, abaixo do rótulo, uma frase em caixa normal que diz o que ele significa: `stat-subtitle` (28px) com `stat-xl`, `stat-subtitle-s` (24px) com `stat-l`. Ex.: "+ 50.000 PESSOAS / em cinco dias de World Tour BT400". Um big number por página.
 - Entrelinha dos displays é menor que o corpo da letra (0,70 a 0,77). Acentos e itálicos passam da caixa da linha: não corte com `overflow: hidden` na vertical.
 - Letter-spacing: −2% nos displays e títulos grandes, −1% no texto, 0 nos rótulos.
@@ -55,6 +56,7 @@ Quatro famílias, cada uma com um papel fixo:
 - O formato-mestre é o palco de 1920×1080. Fotos, textos e mosaicos dos cases começam a 118px das laterais e terminam a 118px da borda direita; pilares e grades usam `stage-margin` (160px).
 - Toda página leva as marcas de borda (componente Chrome): LIVEIDEA AG à esquerda e 2027© à direita, em `chrome` (Space Grotesk Bold 12px), a `stage-chrome` (27px) da borda, no meio da altura. Elas ocupam de 27px a 95px à esquerda e de 1856px a 1894px à direita.
 - **Zona livre das marcas:** nada fica a menos de 20px delas. Só uma foto sangrada pode passar por trás, e aí a marca vai em névoa. Não aumente as marcas: o tamanho é o mesmo em qualquer formato (6pt num slide 16:9 do PowerPoint). Marca maior invade o conteúdo.
+- **Exceção: página de peça.** KV, mockup ou render ocupando a página inteira, sem texto, vai sem marcas de borda: a peça é o assunto e não divide a página com nada.
 - Mosaico de fotos com vão `space-4` (24px) no palco e `space-1` (10px) no mobile.
 - Estatísticas em coluna: número alinhado à direita, rótulo à esquerda, fio `rule` embaixo de cada linha. O big number com subtítulo empilha (Stat `stack`): número em cima, rótulo e subtítulo embaixo, alinhados à esquerda.
 - Mobile: coluna de até 640px, gutter `space-3` (20px), respiro de seção `space-7` (80px).
@@ -70,7 +72,7 @@ Este é o sistema da própria agência: serve a tudo o que a LIVEIDEA assina com
 | Site | coluna fluida, mobile até 640px | a versão mobile (landing) da apresentação |
 | Outras: documentos e redes | o formato da peça | tokens, tipografia e fotografia |
 
-**Toda apresentação abre com a capa padrão da LIVEIDEA**, institucional ou de projeto, antes de qualquer outra página. A capa padrão tem fundo `laranja` em página inteira, o logo `liveidea-nevoa` pequeno no centro e a assinatura IDEIAS *QUE* GANHAM VIDA em `display-manifesto` âmbar a 50% de opacidade sangrando a base da página. As marcas de borda vão em névoa. Ela é sempre a mesma: não leva cliente, título, data nem foto. A capa do projeto (cliente, nome do projeto, data e local) vem logo depois, como segunda página.
+**Toda apresentação abre com a capa padrão da LIVEIDEA**, institucional ou de projeto, antes de qualquer outra página. A capa padrão tem fundo `laranja` em página inteira, o logo `liveidea-nevoa` pequeno no centro e a assinatura IDEIAS *QUE* GANHAM VIDA em `display-manifesto` âmbar a 50% de opacidade sangrando a base da página. As marcas de borda vão em névoa. Ela é sempre a mesma: não leva cliente, título, data nem foto. A capa do projeto (cliente, nome do projeto, data e local) vem logo depois, como segunda página, e repete o esqueleto da capa padrão: fundo laranja, logo névoa pequeno no topo, título em duas vozes no centro e o nome do conceito no Ghost, sangrando a base.
 
 ### Apresentações de projeto
 
@@ -80,8 +82,29 @@ Este é o sistema da própria agência: serve a tudo o que a LIVEIDEA assina com
 - Números de proposta são previsões: escreva-os como no case e marque na `note` do Stat (PÚBLICO ESTIMADO, PREVISÃO DE MONTAGEM). Nunca apresente estimativa como entrega.
 - Etapas do projeto vão na PillarList, que é numerada porque a ordem importa. Conceito, cenografia e jornada vão em páginas de foto (Aplicações de foto).
 - Renders, mockups e referências seguem as regras de foto: quadro reto, sem moldura. Referência de terceiros leva a fonte em `chrome` no canto da foto.
-- **Corpos iguais aos da apresentação comercial.** No PowerPoint 16:9, 2px do palco de 1920 = 1pt: texto corrido 20px (10pt), com as opções maiores 24px (12pt) até 60 palavras e 28px (14pt) até 25 palavras, texto pequeno 18px (9pt), rótulos 16px (8pt), subtítulo de big number 28px (14pt) com o número de 145px e 24px (12pt) com o de 72px, títulos de conteúdo em Aeonik 40–66px (20–33pt) com o destaque em serifa um pouco maior, números 52–145px (26–72pt), títulos display de case 142–180px (71–90pt). Só as palavras de abertura de capítulo (CONCEITO *criativo*, CHEGAR) e a assinatura IDEIAS QUE GANHAM VIDA passam disso, como as palavras-pôster do deck. O corpo maior vem da quantidade de texto, não da vontade de "ler melhor": página cheia fica em 20px, e a hierarquia continua vindo do contraste entre o display grande e o corpo.
+- **Corpos iguais aos da apresentação comercial.** No PowerPoint 16:9, 2px do palco de 1920 = 1pt: texto corrido 20px (10pt), com as opções maiores 24px (12pt) até 60 palavras e 28px (14pt) até 25 palavras, texto pequeno 18px (9pt), rótulos 16px (8pt), subtítulo de big number 28px (14pt) com o número de 145px e 24px (12pt) com o de 72px, títulos de conteúdo em Aeonik 40–72px (20–36pt) com o destaque em serifa um pouco maior, frase única (tese, insight, capa do projeto) em 100–108px (50–54pt) com texto de apoio de 32px (16pt), marcador de seção (Eyebrow) em 20px (10pt), números 52–145px (26–72pt), títulos display de case 142–180px (71–90pt). Só as palavras de abertura de capítulo (CONCEITO *criativo*, CHEGAR) e a assinatura IDEIAS QUE GANHAM VIDA passam disso, como as palavras-pôster do deck. O corpo maior vem da quantidade de texto, não da vontade de "ler melhor": página cheia fica em 20px, e a hierarquia continua vindo do contraste entre o display grande e o corpo.
 - As marcas de borda (Chrome) continuam como no deck comercial: LIVEIDEA AG à esquerda e 2027© à direita, em 6pt, a 27px das laterais, e o conteúdo a partir de 118px. Respeite a zona livre das marcas (ver Layout).
+
+### Proposta criativa
+
+A proposta de KV e conceito (referência: Verão Grupo EMS 2026, página Proposta criativa) conta uma história em passos numerados. A ordem é esta, e cada passo tem uma página-modelo:
+
+1. **Capa padrão LIVEIDEA.**
+2. **Capa do projeto.** O esqueleto da capa padrão: laranja, logo névoa no topo, título em duas vozes centralizado (Aeonik Bold névoa e serifa itálica grafite, 108px) e o conceito no Ghost.
+3. **01 · Insight.** A palavra-chave em serifa itálica gigante (cerca de 220px, laranja) na metade esquerda, com uma legenda curta em serifa (48px). Na direita: Eyebrow, título de 64px em duas vozes e o texto de apoio em `body-3xl`.
+4. **02 · Tese.** Foto de evento sangrada com véu denso, Eyebrow âmbar, `headline-statement` em névoa com o fim da frase em serifa âmbar e o texto de apoio em `body-3xl`.
+5. **03 · Conceito.** Fundo laranja, Eyebrow grafite, o nome do conceito grande (o lettering do KV, quando houver, ou Display), o argumento em Steps de três tempos e uma linha de fechamento com o conceito em serifa.
+6. **04 · Moodboard.** Eyebrow e título à esquerda; à direita, na mesma altura, uma descrição de uma frase em 24px `ink-muted`. O mosaico de referências fica centralizado. Uma nota na base, em 24px, com o rótulo em negrito, registra o que fica de fora (ex.: bebida alcoólica).
+7. **Página de peça.** O KV em página inteira, sem texto e sem marcas de borda.
+8. **05 · O KV.** Eyebrow e título, o KV à esquerda (cerca de 1020px de largura) e a anatomia em NumberedList à direita, os dois alinhados no topo.
+9. **Abertura de capítulo** (ex.: DESDOBRAMENTOS *do KV para o evento*). Laranja, título em duas vozes centralizado e a frase do capítulo no Ghost.
+10. **Páginas de peça** dos desdobramentos: mockups e renders, um por página.
+11. **Fechamento.** Laranja, a palavra do conceito em serifa itálica gigante (300px, névoa), o logo névoa abaixo e a assinatura IDEIAS *QUE* GANHAM VIDA no Ghost.
+
+- O Eyebrow numera os passos do argumento (insight, tese, conceito, moodboard, KV). Capas, aberturas, peças e fechamento não levam número.
+- Sobre névoa, o Eyebrow fica em grafite, e o número das listas em 52px no mínimo: laranja abaixo de 52px não passa no contraste (ver Cor).
+- A peça do cliente (KV, lettering, mockups) aparece como imagem e mantém as cores dela. O resto da página segue a LIVEIDEA.
+- No PowerPoint, exporte o Ghost e o lettering do cliente como PNG transparente. Assim o arquivo abre igual em qualquer máquina.
 
 ### Site
 
@@ -163,3 +186,8 @@ Os componentes ficam em `window.LiveIdea` (React 18). Todos leem os tokens deste
 - **TeamCard**: retrato em cápsula, cargo, nome e bio.
 - **ArrowLink**: link de rede com seta diagonal.
 - **Stamp**: selo circular de texto girando ("INSCRIÇÕES ESGOTADAS EM 24 HORAS").
+- **Eyebrow**: marcador de seção da proposta (01 · INSIGHT).
+- **NumberedList**: lista numerada com fio, como a anatomia do KV.
+- **Steps**: argumento em colunas numeradas, como o conceito em três tempos.
+- **Ghost**: título display translúcido sangrando a base da capa, das aberturas e do fechamento.
+- **Proposta criativa**: página de referência com o roteiro da proposta, da capa padrão ao fechamento.

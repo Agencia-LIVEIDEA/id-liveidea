@@ -26,7 +26,8 @@ design-system/
 │   ├── Icones/            29 SVGs (26 do conjunto + seta, seta diagonal, aspas do deck)
 │   ├── Fotografia/        20 fotos reais de eventos da agência
 │   └── Capas/             8 key visuals de eventos (portfólio)
-├── components/            17 componentes React 18 (window.LiveIdea) + Capa e Aplicações de foto
+├── components/            21 componentes React 18 (window.LiveIdea) + Capa, Aplicações de foto
+│                          e Proposta criativa (páginas de referência)
 │   ├── <Componente>/README.md     diretrizes de uso
 │   ├── <Componente>/preview.html  prévia renderizada no design system
 │   ├── bundle.js · bundle.css     código dos componentes
