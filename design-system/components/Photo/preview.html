@@ -1,0 +1,40 @@
+<!-- @dsCard group="Fotografia" height=1080 width=960 subtitle="Os tratamentos de foto da apresentação" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 10px}
+  .cap span{font-weight:400;text-transform:none}
+  .wrap{padding:32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:36px 32px;align-items:start}
+  .tall{padding-bottom:30px}
+  .amb{color:var(--ambar) !important}
+  .m2{display:flex;align-items:flex-end;gap:14px}
+  .m2 .n{font-family:var(--font-serif);font-size:58px;line-height:.9;color:var(--ambar)}
+  .m2 .n em{font-style:italic}
+  .m2 .l{font-family:var(--font-sans);font-weight:700;font-size:12px;line-height:1.05;color:var(--ink);padding-bottom:6px}
+  .right{display:flex;justify-content:flex-end}
+</style></head>
+<body>
+<div class="wrap">
+  <div><p class="cap">Logo sobre a foto <span>· logo</span></p><div id="a"></div></div>
+  <div><p class="cap">Véu denso + título <span>· veil="denso", place="centro"</span></p><div id="b"></div></div>
+  <div><p class="cap">Número na base <span>· fade="base", place="base"</span></p><div id="c"></div></div>
+  <div><p class="cap">Foto que some no grafite <span>· fade="direita"</span></p><div id="d"></div></div>
+  <div class="tall"><p class="cap">Título atravessando a borda <span>· place="borda-base"</span></p><div id="e"></div></div>
+  <div><p class="cap">Entrada <span>· reveal</span></p><div id="f"></div></div>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Photo, { ratio: '16/10', src: '/_blob/3c473f22a24df28d48e7a652e24aff1f', alt: 'Plenária da Primeira Classe', veil: 'leve', logo: 40 }));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.Photo, { ratio: '16/10', src: '/_blob/bafef56af9d9fff8df474b4addd4a993', alt: 'Equipe da LIVEIDEA no evento', veil: 'denso', place: 'centro' }, h(L.Headline, { size: 34 }, 'CONFIANÇA CONSTRUÍDA A CADA ', h('em', { className: 'amb' }, 'entrega.'))));
+  ReactDOM.createRoot(document.getElementById('c')).render(h(L.Photo, { ratio: '16/10', src: '/_blob/d801967c45c5db70353ca508f6f79082', alt: 'Jantar na tenda do Reinventando o Futuro', fade: 'base' }, h('div', { className: 'm2' }, h('span', { className: 'n' }, '600', h('em', null, 'm²')), h('span', { className: 'l' }, 'DE TENDA CONSTRUÍDA', h('br'), 'E CLIMATIZADA'))));
+  ReactDOM.createRoot(document.getElementById('d')).render(h(L.Photo, { ratio: '16/10', src: '/_blob/e2ac1d13f58f4f5d32e173a6d769404e', alt: 'Exposição imersiva O Brasil de Tarsila', fade: 'direita', place: 'centro' }, h('div', { className: 'right' }, h(L.Display, { as: 'p', size: 54, style: { color: 'var(--nevoa)' } }, 'O ', h('b', null, 'BRASIL'), ' DE', h('br'), h('i', null, 'Tarsila')))));
+  ReactDOM.createRoot(document.getElementById('e')).render(h(L.Photo, { ratio: '16/9', src: '/_blob/ca54bcb0689f99b322800ee40ff5b429', alt: 'Partida do World Tour BT400', place: 'borda-base' }, h(L.Display, { as: 'p', size: 74 }, h('span', { className: 'li-sbi' }, 'WORLD '), 'BT', h('b', null, '400 '), h('i', null, 'tour'))));
+  var k = 0;
+  function Rev() { var s = React.useState(0); return h('div', null, h(L.Photo, { key: s[0], ratio: '16/10', src: '/_blob/1764843234f5a3f238847987b887b173', alt: 'Auditório do Reinventando o Futuro', reveal: true }), h('div', { style: { marginTop: 12 } }, h(L.Button, { size: 'sm', variant: 'outline', onClick: function () { s[1](s[0] + 1); } }, 'Rever a entrada'))); }
+  ReactDOM.createRoot(document.getElementById('f')).render(h(Rev));
+</script>
+</body>
+</html>

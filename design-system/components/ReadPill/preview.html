@@ -1,0 +1,20 @@
+<!-- @dsCard group="Ações" height=120 subtitle="Sobre névoa e sobre âmbar" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .row{display:grid;grid-template-columns:1fr 1fr;height:120px}
+  .t{display:flex;align-items:center;justify-content:center;background:var(--nevoa)}
+  .amb{background:var(--ambar)}
+</style></head>
+<body>
+<div class="row"><div class="t" id="a"></div><div class="t amb" id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.ReadPill, { href: 'https://bravo.abril.com.br/arte/exposicao-imersiva-tarsila-do-amaral-sao-paulo-nubank-arte-lab/' }));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.ReadPill, { href: 'https://forbes.com.br/forbes-life/2026/08/nova-mostra-imersiva-tarsila-do-amaral-sao-paulo/' }));
+</script>
+</body>
+</html>

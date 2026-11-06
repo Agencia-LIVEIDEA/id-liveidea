@@ -1,0 +1,52 @@
+<!-- @dsCard group="Iconografia" height=640 width=960 subtitle="26 ícones em traço bold com pontas chatas, e o uso ao lado de rótulos" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:32px 40px}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 14px}
+  .cap span{font-weight:400;text-transform:none}
+  .grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:22px 10px;margin-bottom:30px}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink)}
+  .cell span{font-family:var(--font-grotesk);font-size:10px;color:var(--ink-muted);text-align:center}
+  .use{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .band{padding:22px 24px;display:flex;flex-direction:column;gap:14px}
+  .band.light{background:var(--surface-alt)}
+  .band.orange{background:var(--laranja);color:var(--nevoa)}
+  .row{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.3}
+  .row b{font-weight:700}
+  .sizes{display:flex;align-items:flex-end;gap:22px;margin-top:6px}
+</style></head>
+<body>
+<div class="wrap">
+  <p class="cap">Conjunto <span>· grid 24px, traço 2,5px, pontas chatas, cantos vivos</span></p>
+  <div class="grid" id="g"></div>
+  <p class="cap">Uso <span>· sempre ao lado de um rótulo; cor herdada do texto</span></p>
+  <div class="use">
+    <div class="band light" id="a"></div>
+    <div class="band orange" id="b"></div>
+  </div>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  ReactDOM.createRoot(document.getElementById('g')).render(h(F, null, L.Icon.names.map(function (n) {
+    return h('div', { key: n, className: 'cell' }, h(L.Icon, { name: n, size: 32 }), h('span', null, n));
+  })));
+  function row(icon, strong, text) { return h('div', { className: 'row', key: strong }, h(L.Icon, { name: icon, size: 24 }), h('div', null, h('b', null, strong), ' ', text)); }
+  ReactDOM.createRoot(document.getElementById('a')).render(h(F, null,
+    row('local', 'Localização:', 'Av. General Mário Tourinho, 1599, Curitiba/PR'),
+    row('calendario', '14 e 15', 'de setembro de 2026'),
+    row('pessoas', '110', 'convidados'),
+    row('relogio', '1h45', 'de percurso'),
+    h('div', { className: 'sizes', key: 's' }, [16, 24, 32, 48].map(function (z) { return h(L.Icon, { key: z, name: 'hospedagem', size: z }); }))));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(F, null,
+    row('aviao', 'Recepção', 'no aeroporto e transfers executivos'),
+    row('hospedagem', 'Hospedagem', 'no Radisson Hotel Curitiba'),
+    row('talheres', 'Welcome dinner', 'no Restaurante Catanzaro'),
+    row('carro', 'Road experience', 'pela Serra da Graciosa'),
+    h('div', { className: 'sizes', key: 's' }, [16, 24, 32, 48].map(function (z) { return h(L.Icon, { key: z, name: 'seta-diagonal', size: z }); }))));
+</script>
+</body>
+</html>

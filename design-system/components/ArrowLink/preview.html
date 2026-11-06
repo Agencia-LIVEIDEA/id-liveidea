@@ -1,0 +1,17 @@
+<!-- @dsCard group="Ações" height=120 width=960 subtitle="Links do fechamento" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .row{height:120px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:24px;padding:0 40px}
+</style></head>
+<body>
+<div class="row" id="a"></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(React.Fragment, null, h(L.ArrowLink, { href: 'https://www.liveidea.com.br/' }, 'SITE'), h(L.ArrowLink, { href: 'https://www.instagram.com/liveidea.ag/' }, 'INSTAGRAM'), h(L.ArrowLink, { href: 'https://www.youtube.com/@liveidea_ag' }, 'YOUTUBE'), h(L.ArrowLink, { href: 'https://www.linkedin.com/company/liveidea/' }, 'LINKEDIN')));
+</script>
+</body>
+</html>

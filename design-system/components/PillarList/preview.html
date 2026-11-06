@@ -1,0 +1,23 @@
+<!-- @dsCard group="Conteúdo" height=760 width=1100 subtitle="Os quatro pilares; clique para trocar o ativo" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  body{background:var(--surface-alt)}
+  .wrap{padding:40px}
+</style></head>
+<body>
+<div class="wrap" id="a"></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.PillarList, { items: [
+    { title: 'Narrativa e', accent: 'criatividade estratégica', text: 'Traduzimos objetivos de negócio e conteúdos técnicos em conceitos proprietários. Construímos jornadas com começo, meio e fim, integrando tecnologia e linguagem para transformar mensagens institucionais e de produto em pontos de contato relevantes para cada perfil de público (B2B, B2C, B2E e B2G).' },
+    { title: 'Gestão e', accent: 'viabilidade', text: 'Equalizamos o escopo criativo aos parâmetros financeiros e regulatórios antes da produção. Atuamos com análise crítica de budget, governança orçamentária transparente e equalização técnica de concorrências (BIDs), garantindo previsibilidade de entrega e conformidade com as políticas de compliance.' },
+    { title: 'Excelência', accent: 'operacional', text: 'Gerenciamos a engenharia de montagem, logística e coordenação técnica de ponta a ponta. Estruturamos fluxos simultâneos de equipes e fornecedores para assegurar sincronia, segurança técnica e rigor de execução em plenárias, ativações, estandes e arenas de grande escala.' },
+    { title: 'Projetos', accent: 'proprietários', text: 'Mapeamos dores de mercado e oportunidades para criar formatos proprietários em arte, cultura e tecnologia. Uma abordagem focada na experiência do participante para entregar relevância contínua e valor consistente às marcas parceiras.' }
+  ] }));
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- @dsCard group="Conteúdo" height=240 subtitle="Selo do case Verão NC" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .t{height:240px;display:flex;align-items:center;justify-content:center;background:var(--laranja);color:var(--on-laranja)}
+</style></head>
+<body>
+<div class="t" id="a"></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Stamp, { size: 170, text: 'INSCRIÇÕES ESGOTADAS EM 24 HORAS ·' }));
+</script>
+</body>
+</html>

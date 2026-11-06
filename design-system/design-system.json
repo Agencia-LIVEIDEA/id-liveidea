@@ -1,0 +1,498 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-04T18:40:00Z"
+  },
+  "title": "LIVEIDEA",
+  "namespace": "LiveIdea",
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18"
+    },
+    {
+      "name": "react-dom",
+      "version": "18"
+    }
+  ],
+  "sections": {},
+  "groups": [
+    "Logos",
+    "Icones",
+    "Fotografia",
+    "Capas"
+  ],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "liveidea-laranja.svg",
+        "liveidea-nevoa.svg",
+        "liveidea-grafite.svg",
+        "simbolo-i-gradiente.svg"
+      ],
+      "files": {
+        "liveidea-laranja.svg": {
+          "name": "liveidea-laranja.svg",
+          "blob": "9c85e94bc37844a52d0a489855069438",
+          "size": 7942,
+          "type": "image/svg+xml"
+        },
+        "liveidea-nevoa.svg": {
+          "name": "liveidea-nevoa.svg",
+          "blob": "a2ab74bdcfd7edb966730717755b3910",
+          "size": 7942,
+          "type": "image/svg+xml"
+        },
+        "liveidea-grafite.svg": {
+          "name": "liveidea-grafite.svg",
+          "blob": "65027fc1b4a4801265ae9977383086b3",
+          "size": 7942,
+          "type": "image/svg+xml"
+        },
+        "simbolo-i-gradiente.svg": {
+          "name": "simbolo-i-gradiente.svg",
+          "blob": "0a2cfac240520fd34e05752c2d52d28a",
+          "size": 1540,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Icones": {
+      "name": "Icones",
+      "tile": "s",
+      "order": [
+        "icone-seta-direita.svg",
+        "icone-seta-esquerda.svg",
+        "icone-seta-diagonal.svg",
+        "icone-chevron-direita.svg",
+        "icone-chevron-esquerda.svg",
+        "icone-chevron-baixo.svg",
+        "icone-mais.svg",
+        "icone-fechar.svg",
+        "icone-check.svg",
+        "icone-menu.svg",
+        "icone-play.svg",
+        "icone-busca.svg",
+        "icone-link-externo.svg",
+        "icone-download.svg",
+        "icone-local.svg",
+        "icone-calendario.svg",
+        "icone-relogio.svg",
+        "icone-pessoas.svg",
+        "icone-email.svg",
+        "icone-camera.svg",
+        "icone-musica.svg",
+        "icone-microfone.svg",
+        "icone-talheres.svg",
+        "icone-hospedagem.svg",
+        "icone-carro.svg",
+        "icone-aviao.svg",
+        "seta-diagonal.svg",
+        "seta.svg",
+        "aspas.svg"
+      ],
+      "files": {
+        "seta-diagonal.svg": {
+          "name": "seta-diagonal.svg",
+          "blob": "1587dacc52eca3512a6f2e22f85f2806",
+          "size": 571,
+          "type": "image/svg+xml"
+        },
+        "seta.svg": {
+          "name": "seta.svg",
+          "blob": "8e3b3081610a80f7305154b8e1b01e9a",
+          "size": 544,
+          "type": "image/svg+xml"
+        },
+        "aspas.svg": {
+          "name": "aspas.svg",
+          "blob": "c74b9cbbc2a232a8b65fc3b1f5b4713d",
+          "size": 1047,
+          "type": "image/svg+xml"
+        },
+        "icone-seta-direita.svg": {
+          "name": "icone-seta-direita.svg",
+          "blob": "7a52bbf91f68f601e9ec765b594465af",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "icone-seta-esquerda.svg": {
+          "name": "icone-seta-esquerda.svg",
+          "blob": "f20665af1b3bdb9749c957025dcba249",
+          "size": 263,
+          "type": "image/svg+xml"
+        },
+        "icone-seta-diagonal.svg": {
+          "name": "icone-seta-diagonal.svg",
+          "blob": "b02450839e62b618a9cd84afdf2bb1b6",
+          "size": 254,
+          "type": "image/svg+xml"
+        },
+        "icone-chevron-direita.svg": {
+          "name": "icone-chevron-direita.svg",
+          "blob": "13bdecafc70786bc468063c8da15492e",
+          "size": 240,
+          "type": "image/svg+xml"
+        },
+        "icone-chevron-esquerda.svg": {
+          "name": "icone-chevron-esquerda.svg",
+          "blob": "5f50e2ba49792ac08982657c9e4ad61d",
+          "size": 241,
+          "type": "image/svg+xml"
+        },
+        "icone-chevron-baixo.svg": {
+          "name": "icone-chevron-baixo.svg",
+          "blob": "729e3713b4d24af0b8cd27266ccd86c9",
+          "size": 240,
+          "type": "image/svg+xml"
+        },
+        "icone-mais.svg": {
+          "name": "icone-mais.svg",
+          "blob": "57f9e22490a148a6b41e72a814b6e21e",
+          "size": 251,
+          "type": "image/svg+xml"
+        },
+        "icone-fechar.svg": {
+          "name": "icone-fechar.svg",
+          "blob": "0a9f6bcdb1bf930d6767332887e7cfd6",
+          "size": 251,
+          "type": "image/svg+xml"
+        },
+        "icone-check.svg": {
+          "name": "icone-check.svg",
+          "blob": "3760ded4de03a8a39c9878f3784637e5",
+          "size": 241,
+          "type": "image/svg+xml"
+        },
+        "icone-menu.svg": {
+          "name": "icone-menu.svg",
+          "blob": "148da91fd0d39c72e3df0ccb4dae00ce",
+          "size": 270,
+          "type": "image/svg+xml"
+        },
+        "icone-play.svg": {
+          "name": "icone-play.svg",
+          "blob": "489ab3db506a701daf69a70c4b2c7ff6",
+          "size": 235,
+          "type": "image/svg+xml"
+        },
+        "icone-busca.svg": {
+          "name": "icone-busca.svg",
+          "blob": "86456ce121aefb3021756a9b7e678b2e",
+          "size": 273,
+          "type": "image/svg+xml"
+        },
+        "icone-link-externo.svg": {
+          "name": "icone-link-externo.svg",
+          "blob": "7913e6a17213b89542352cfb3230558b",
+          "size": 290,
+          "type": "image/svg+xml"
+        },
+        "icone-download.svg": {
+          "name": "icone-download.svg",
+          "blob": "19c5c6493acc7a0d12bf0b6f55175247",
+          "size": 286,
+          "type": "image/svg+xml"
+        },
+        "icone-local.svg": {
+          "name": "icone-local.svg",
+          "blob": "56eef7641e8ee567a864b2901ee43273",
+          "size": 306,
+          "type": "image/svg+xml"
+        },
+        "icone-calendario.svg": {
+          "name": "icone-calendario.svg",
+          "blob": "b4690e69b1a5b89aadcac8d72fba1531",
+          "size": 299,
+          "type": "image/svg+xml"
+        },
+        "icone-relogio.svg": {
+          "name": "icone-relogio.svg",
+          "blob": "88a785965f2521ce5c49f8f349090aab",
+          "size": 269,
+          "type": "image/svg+xml"
+        },
+        "icone-pessoas.svg": {
+          "name": "icone-pessoas.svg",
+          "blob": "01a75d3587a7eccf11c0d479e8ada2ea",
+          "size": 398,
+          "type": "image/svg+xml"
+        },
+        "icone-email.svg": {
+          "name": "icone-email.svg",
+          "blob": "ba283b8c0a9152aed0d5949ef8ee1ee8",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "icone-camera.svg": {
+          "name": "icone-camera.svg",
+          "blob": "116c687fafeda059873942d332927c34",
+          "size": 307,
+          "type": "image/svg+xml"
+        },
+        "icone-musica.svg": {
+          "name": "icone-musica.svg",
+          "blob": "cb09d8044aef340cf4773aeb7c32ee41",
+          "size": 311,
+          "type": "image/svg+xml"
+        },
+        "icone-microfone.svg": {
+          "name": "icone-microfone.svg",
+          "blob": "d558577e159ae6fc496ac92096ce0c51",
+          "size": 318,
+          "type": "image/svg+xml"
+        },
+        "icone-talheres.svg": {
+          "name": "icone-talheres.svg",
+          "blob": "f8fe1425e564b4f693f3a9e7013de470",
+          "size": 322,
+          "type": "image/svg+xml"
+        },
+        "icone-hospedagem.svg": {
+          "name": "icone-hospedagem.svg",
+          "blob": "4fd2ce9da0db018ccefd602f0c1347b3",
+          "size": 332,
+          "type": "image/svg+xml"
+        },
+        "icone-carro.svg": {
+          "name": "icone-carro.svg",
+          "blob": "451927d360e2e684ace7806895becd6a",
+          "size": 320,
+          "type": "image/svg+xml"
+        },
+        "icone-aviao.svg": {
+          "name": "icone-aviao.svg",
+          "blob": "00000b4f977f2728e215eb7ad8aead70",
+          "size": 290,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Fotografia": {
+      "name": "Fotografia",
+      "tile": "l",
+      "order": [
+        "encontro-de-lideres.jpg",
+        "auditorio-reinventando-o-futuro.jpg",
+        "world-tour-bt400.jpg",
+        "bastidores-equipe.jpg",
+        "retrato-pedro-biondi.png",
+        "confianca-equipe.jpg",
+        "tarsila-imersiva.jpg",
+        "premio-agencia-do-ano.jpg",
+        "premio-bex-awards.jpg",
+        "premio-trofeus.jpg",
+        "dhl-plenaria.jpg",
+        "dhl-vai-de-dhl.jpg",
+        "dhl-credenciamento.jpg",
+        "aak-ativacao.jpg",
+        "aak-plenaria.jpg",
+        "aak-degustacao.jpg",
+        "bt400-publico.jpg",
+        "bt400-show.jpg",
+        "bt400-montagem.jpg",
+        "reinventando-jantar.jpg"
+      ],
+      "files": {
+        "encontro-de-lideres.jpg": {
+          "name": "encontro-de-lideres.jpg",
+          "blob": "d2be6b25be56727198731df07c8a8600",
+          "size": 725256,
+          "type": "image/jpeg"
+        },
+        "auditorio-reinventando-o-futuro.jpg": {
+          "name": "auditorio-reinventando-o-futuro.jpg",
+          "blob": "1764843234f5a3f238847987b887b173",
+          "size": 526470,
+          "type": "image/jpeg"
+        },
+        "world-tour-bt400.jpg": {
+          "name": "world-tour-bt400.jpg",
+          "blob": "ca54bcb0689f99b322800ee40ff5b429",
+          "size": 237146,
+          "type": "image/jpeg"
+        },
+        "bastidores-equipe.jpg": {
+          "name": "bastidores-equipe.jpg",
+          "blob": "3881e019887530f57ac8d6efd533ea4c",
+          "size": 409957,
+          "type": "image/jpeg"
+        },
+        "retrato-pedro-biondi.png": {
+          "name": "retrato-pedro-biondi.png",
+          "blob": "ae812f1fab984a0d23659b00469987a8",
+          "size": 648429,
+          "type": "image/png"
+        },
+        "confianca-equipe.jpg": {
+          "name": "confianca-equipe.jpg",
+          "blob": "bafef56af9d9fff8df474b4addd4a993",
+          "size": 589225,
+          "type": "image/jpeg"
+        },
+        "tarsila-imersiva.jpg": {
+          "name": "tarsila-imersiva.jpg",
+          "blob": "e2ac1d13f58f4f5d32e173a6d769404e",
+          "size": 200894,
+          "type": "image/jpeg"
+        },
+        "premio-agencia-do-ano.jpg": {
+          "name": "premio-agencia-do-ano.jpg",
+          "blob": "143e262ed0d1040e9405b8f1a17a0bf5",
+          "size": 241193,
+          "type": "image/jpeg"
+        },
+        "premio-bex-awards.jpg": {
+          "name": "premio-bex-awards.jpg",
+          "blob": "fe08201a022788a4400ae19aa902fd5d",
+          "size": 504498,
+          "type": "image/jpeg"
+        },
+        "premio-trofeus.jpg": {
+          "name": "premio-trofeus.jpg",
+          "blob": "140e3d843bf99e4ba249dcf5ac117d45",
+          "size": 80466,
+          "type": "image/jpeg"
+        },
+        "dhl-plenaria.jpg": {
+          "name": "dhl-plenaria.jpg",
+          "blob": "69aaf5c49ccfd27141169b7c46bc43be",
+          "size": 567309,
+          "type": "image/jpeg"
+        },
+        "dhl-vai-de-dhl.jpg": {
+          "name": "dhl-vai-de-dhl.jpg",
+          "blob": "4a1fe3e6791935afa9614df694887a69",
+          "size": 83188,
+          "type": "image/jpeg"
+        },
+        "dhl-credenciamento.jpg": {
+          "name": "dhl-credenciamento.jpg",
+          "blob": "9f457ea40ccb1369e857c8f06787b2e5",
+          "size": 134599,
+          "type": "image/jpeg"
+        },
+        "aak-ativacao.jpg": {
+          "name": "aak-ativacao.jpg",
+          "blob": "676e483e2619240741710a0c13615e26",
+          "size": 110023,
+          "type": "image/jpeg"
+        },
+        "aak-plenaria.jpg": {
+          "name": "aak-plenaria.jpg",
+          "blob": "3c473f22a24df28d48e7a652e24aff1f",
+          "size": 338852,
+          "type": "image/jpeg"
+        },
+        "aak-degustacao.jpg": {
+          "name": "aak-degustacao.jpg",
+          "blob": "b7e52bdb8d516e6dde2f0b54ca976d14",
+          "size": 203397,
+          "type": "image/jpeg"
+        },
+        "bt400-publico.jpg": {
+          "name": "bt400-publico.jpg",
+          "blob": "619b5a8f8eeb91fe07b7f98985501f5a",
+          "size": 98577,
+          "type": "image/jpeg"
+        },
+        "bt400-show.jpg": {
+          "name": "bt400-show.jpg",
+          "blob": "e06a6a99c811b76d3c4e3bfbac350ce5",
+          "size": 97097,
+          "type": "image/jpeg"
+        },
+        "bt400-montagem.jpg": {
+          "name": "bt400-montagem.jpg",
+          "blob": "f198e7ec84dcb014b7f08337b7fb656a",
+          "size": 143327,
+          "type": "image/jpeg"
+        },
+        "reinventando-jantar.jpg": {
+          "name": "reinventando-jantar.jpg",
+          "blob": "d801967c45c5db70353ca508f6f79082",
+          "size": 524290,
+          "type": "image/jpeg"
+        }
+      }
+    },
+    "Capas": {
+      "name": "Capas",
+      "tile": "m",
+      "order": [
+        "vibra-non-retail.jpg",
+        "desbravar.png",
+        "movimento-contra-a-dor.jpg",
+        "ecommerce-day.png",
+        "ano-novo-chines.jpg",
+        "verao-nc.jpg",
+        "potencia-maxima.jpg",
+        "aak-feeds-better.jpg"
+      ],
+      "files": {
+        "vibra-non-retail.jpg": {
+          "name": "vibra-non-retail.jpg",
+          "blob": "603fe46792566a534644f8470df1550f",
+          "size": 130694,
+          "type": "image/jpeg"
+        },
+        "desbravar.png": {
+          "name": "desbravar.png",
+          "blob": "a137a5df41688a3537d2ce2011cd1fde",
+          "size": 242840,
+          "type": "image/png"
+        },
+        "movimento-contra-a-dor.jpg": {
+          "name": "movimento-contra-a-dor.jpg",
+          "blob": "e99e0ce923c11a8066829a0b69ee69bf",
+          "size": 54365,
+          "type": "image/jpeg"
+        },
+        "ecommerce-day.png": {
+          "name": "ecommerce-day.png",
+          "blob": "d0d1f171e0cf3fd15fa429845e08d60a",
+          "size": 235593,
+          "type": "image/png"
+        },
+        "ano-novo-chines.jpg": {
+          "name": "ano-novo-chines.jpg",
+          "blob": "09f141839fc8c452a4b3abcf1d26438b",
+          "size": 94175,
+          "type": "image/jpeg"
+        },
+        "verao-nc.jpg": {
+          "name": "verao-nc.jpg",
+          "blob": "0e8646d89853edc0eb3fce64685b0eb0",
+          "size": 100162,
+          "type": "image/jpeg"
+        },
+        "potencia-maxima.jpg": {
+          "name": "potencia-maxima.jpg",
+          "blob": "540ca1f539e4b35f8c034b196941ce89",
+          "size": 63590,
+          "type": "image/jpeg"
+        },
+        "aak-feeds-better.jpg": {
+          "name": "aak-feeds-better.jpg",
+          "blob": "a7ae22a3fbb00e5eba9d01c33bb73875",
+          "size": 54281,
+          "type": "image/jpeg"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Vitor Bertucci",
+    "at": "2026-11-06T14:40:18Z",
+    "via": "Claude Code",
+    "note": "Capa padrão LIVEIDEA abre toda apresentação, antes da capa do projeto."
+  }
+}

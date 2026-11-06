@@ -1,0 +1,40 @@
+<!-- @dsCard group="Fotografia" height=3480 width=960 subtitle="Os oito mosaicos dos cases" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 10px}
+  .cap span{font-weight:400;text-transform:none}
+  .wrap{padding:32px 40px;display:flex;flex-direction:column;gap:48px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
+  .stats .li-stat--m .li-stat__num{font-size:40px}
+  .mid{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:0 12px}
+  .txt{margin:0;font-size:14px;line-height:1.3;max-width:26em}
+</style></head>
+<body>
+<div class="wrap">
+  <section><p class="cap">dupla <span>· Reinventando o Futuro, Grupo EMS</span></p><div id="g1"></div></section>
+  <section><p class="cap">trio <span>· Primeira Classe, AAK</span></p><div id="g2"></div></section>
+  <section><p class="cap">destaque <span>· E-commerce Day, DHL</span></p><div id="g3"></div></section>
+  <section><p class="cap">mosaico <span>· World Tour BT400, EMS</span></p><div id="g4"></div></section>
+  <section><p class="cap">vitrine <span>· duas horizontais, uma vertical e o conteúdo</span></p><div id="g5"></div></section>
+  <section><p class="cap">laterais <span>· duas verticais e o conteúdo no meio</span></p><div id="g6"></div></section>
+  <section><p class="cap">faixa <span>· panorama de vídeo ou plenária</span></p><div id="g7"></div></section>
+  <section><p class="cap">capas <span>· key visuals, 16:9</span></p><div id="g8"></div></section>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  var ph = function (src, alt, extra) { return Object.assign({ src: src, alt: alt }, extra || {}); };
+  ReactDOM.createRoot(document.getElementById('g1')).render(h(L.PhotoGrid, { layout: 'dupla', photos: [ph('/_blob/1764843234f5a3f238847987b887b173', 'Auditório'), ph('/_blob/d801967c45c5db70353ca508f6f79082', 'Jantar na tenda')] }));
+  ReactDOM.createRoot(document.getElementById('g2')).render(h(L.PhotoGrid, { layout: 'trio', gap: 's', photos: [ph('/_blob/676e483e2619240741710a0c13615e26', 'Ativação com comissária'), ph('/_blob/3c473f22a24df28d48e7a652e24aff1f', 'Plenária'), ph('/_blob/b7e52bdb8d516e6dde2f0b54ca976d14', 'Degustação')] }));
+  ReactDOM.createRoot(document.getElementById('g3')).render(h(L.PhotoGrid, { layout: 'destaque', gap: 's', photos: [ph('/_blob/69aaf5c49ccfd27141169b7c46bc43be', 'Plenária do E-commerce Day'), ph('/_blob/4a1fe3e6791935afa9614df694887a69', 'Letreiro #VAIDEDHL'), ph('/_blob/9f457ea40ccb1369e857c8f06787b2e5', 'Credenciamento')] }));
+  ReactDOM.createRoot(document.getElementById('g4')).render(h(L.PhotoGrid, { layout: 'mosaico', photos: [ph('/_blob/f198e7ec84dcb014b7f08337b7fb656a', 'Montagem da arquibancada, com o logo'), ph('/_blob/619b5a8f8eeb91fe07b7f98985501f5a', 'Público'), ph('/_blob/e06a6a99c811b76d3c4e3bfbac350ce5', 'Show'), ph('/_blob/ca54bcb0689f99b322800ee40ff5b429', 'Partida')] }));
+  ReactDOM.createRoot(document.getElementById('g5')).render(h(L.PhotoGrid, { layout: 'vitrine', gap: 'l', photos: [ph('/_blob/1764843234f5a3f238847987b887b173', 'Auditório'), ph('/_blob/d2be6b25be56727198731df07c8a8600', 'Palco'), ph('/_blob/fe08201a022788a4400ae19aa902fd5d', 'Premiação', { focus: '50% 20%' })] }, h('div', { className: 'stats' }, h(L.Stat, { value: '350', label: 'COLABORADORES' }), h(L.Stat, { value: '5', unit: 'dias', label: 'DE IMERSÃO' }), h(L.Stat, { value: '10', unit: 'salas', label: 'DEDICADAS' }), h(L.Stat, { value: '1', unit: 'farmácia', label: 'CENOGRÁFICA' }))));
+  ReactDOM.createRoot(document.getElementById('g6')).render(h(L.PhotoGrid, { layout: 'laterais', gap: 'l', photos: [ph('/_blob/fe08201a022788a4400ae19aa902fd5d', 'Premiação', { focus: '50% 20%' }), ph('/_blob/140e3d843bf99e4ba249dcf5ac117d45', 'Troféus')] }, h('div', { className: 'mid' }, h(L.Display, { as: 'p', size: 72 }, h('i', null, 'verão'), ' ', h('b', null, 'NC')), h('p', { className: 'txt' }, 'Planejamento e produção da festa de final de ano do grupo no Folk Valley, estruturada no formato de um festival cultural.'))));
+  ReactDOM.createRoot(document.getElementById('g7')).render(h(L.PhotoGrid, { layout: 'faixa', photos: [ph('/_blob/d2be6b25be56727198731df07c8a8600', 'Plenária do Encontro de Líderes', { focus: '50% 35%' })] }));
+  ReactDOM.createRoot(document.getElementById('g8')).render(h(L.PhotoGrid, { layout: 'capas', gap: 'l', photos: ["/_blob/603fe46792566a534644f8470df1550f","/_blob/a137a5df41688a3537d2ce2011cd1fde","/_blob/e99e0ce923c11a8066829a0b69ee69bf","/_blob/d0d1f171e0cf3fd15fa429845e08d60a","/_blob/09f141839fc8c452a4b3abcf1d26438b","/_blob/0e8646d89853edc0eb3fce64685b0eb0","/_blob/540ca1f539e4b35f8c034b196941ce89","/_blob/a7ae22a3fbb00e5eba9d01c33bb73875"].map(function (s) { return ph(s, 'Key visual de evento'); }) }));
+</script>
+</body>
+</html>

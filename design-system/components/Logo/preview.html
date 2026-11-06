@@ -1,0 +1,23 @@
+<!-- @dsCard group="Estrutura" height=180 width=960 subtitle="Névoa no laranja, laranja na névoa, névoa no grafite" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);height:180px}
+  .t{display:flex;align-items:center;justify-content:center}
+  .a{background:var(--laranja);color:var(--on-laranja)}
+  .b{background:var(--nevoa);color:var(--laranja)}
+  .c{background:var(--grafite);color:var(--nevoa)}
+</style></head>
+<body>
+<div class="row"><div class="t a" id="l1"></div><div class="t b" id="l2"></div><div class="t c" id="l3"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('l1')).render(h(L.Logo, { height: 40 }));
+  ReactDOM.createRoot(document.getElementById('l2')).render(h(L.Logo, { height: 40 }));
+  ReactDOM.createRoot(document.getElementById('l3')).render(h(L.Logo, { height: 40 }));
+</script>
+</body>
+</html>

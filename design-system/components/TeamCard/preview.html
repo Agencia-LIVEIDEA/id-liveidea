@@ -1,0 +1,19 @@
+<!-- @dsCard group="Conteúdo" height=760 width=760 subtitle="Pedro Biondi, CEO; e o estado sem foto" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  body{background:var(--surface-alt)}
+  .wrap{padding:40px;display:grid;grid-template-columns:repeat(2,276px);justify-content:center;gap:60px}
+</style></head>
+<body>
+<div class="wrap"><div id="a"></div><div id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.TeamCard, { photo: '/_blob/ae812f1fab984a0d23659b00469987a8', role: 'CEO', first: 'Pedro', last: 'Biondi', bio: 'DNA publicitário: Grupo Bullet, B/Ferraz, RedDoor. Criou para Google, Audi, VW, Unilever e BMW. Expandiu eventos da Innocean Worldwide.' }));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.TeamCard, { role: 'FOUNDER & ADVISOR', first: 'João', last: 'Giani', bio: 'Especialista em live marketing com atuação no setor farmacêutico. Foco em projetos com escalabilidade, inovação e ROI.' }));
+</script>
+</body>
+</html>

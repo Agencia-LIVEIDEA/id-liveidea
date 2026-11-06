@@ -1,0 +1,21 @@
+<!-- @dsCard group="Ações" height=150 width=960 subtitle="Player (laranja, 2px) e mobile (âmbar, 3px)" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 10px}
+  .cap span{font-weight:400;text-transform:none}
+  .band{background:var(--grafite);padding:24px 40px;height:150px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
+  .band .cap{color:var(--nevoa);opacity:var(--opacity-muted);margin:8px 0}
+</style></head>
+<body>
+<div class="band"><p class="cap">Player · página 14 de 35</p><div id="a"></div><p class="cap">Mobile · 65% da rolagem</p><div id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.ProgressBar, { value: 14 / 35 }));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.ProgressBar, { value: 0.65, tone: 'ambar', height: 3 }));
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- @dsCard group="Tipografia" height=300 width=960 subtitle="Título de conteúdo e frase de manifesto" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+</style></head>
+<body>
+<div class="wrap"><div id="a"></div><div id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Headline, { size: 64 }, 'BPO da ', h('em', null, 'maior farmacêutica'), h('br'), 'da América Latina'));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.Headline, { size: 44, weight: 'regular' }, 'Só está pronto para ', h('em', null, 'encantar'), ' o público quem cuida do cliente nos bastidores.'));
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Conteúdo" height=900 width=960 subtitle="Coluna de números do World Tour BT400, número-herói do BPO e big numbers com subtítulo" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:32px 40px;display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;background:var(--surface)}
+  #b .li-stat{grid-template-columns:auto minmax(0,1fr)}
+  .dark{padding:40px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px 80px;align-items:end;background:var(--grafite);color:var(--nevoa);--ink:var(--nevoa);--rule:rgba(242,242,242,.3)}
+  .cap{grid-column:1 / -1;margin:0;font-family:var(--font-grotesk);font-weight:700;font-size:12px;color:var(--ink-muted)}
+  .dark .cap{color:#a4a4a4}
+</style></head>
+<body>
+<div class="wrap"><div id="a"></div><div id="b"></div></div>
+<div class="dark"><p class="cap">BIG NUMBER COM SUBTÍTULO (stack)</p><div id="c"></div><div id="d"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(React.Fragment, null, h(L.Stat, { value: '+ 50.000', label: 'PESSOAS' }), h(L.Stat, { value: '+ 400', label: 'ATLETAS' }), h(L.Stat, { value: '5', unit: 'dias', label: 'DE EVENTO' }), h(L.Stat, { value: '470', label: 'PONTOS ITF' }), h(L.Stat, { value: '+ 1.000', label: 'CRIANÇAS ENVOLVIDAS' })));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.Stat, { size: 'xl', value: '3.178', label: 'EVENTOS GERIDOS E ATENDIDOS', note: 'ATÉ ABRIL DE 2026' }));
+  ReactDOM.createRoot(document.getElementById('c')).render(h(L.Stat, { size: 'xl', stack: true, value: '+ 50.000', label: 'PESSOAS', subtitle: 'em cinco dias de World Tour BT400', note: null }));
+  ReactDOM.createRoot(document.getElementById('d')).render(h(L.Stat, { size: 'l', stack: true, rule: false, value: '3.020', label: 'PESSOAS', subtitle: 'no Mirante do Vertedouro, com vista panorâmica da usina' }));
+</script>
+</body>
+</html>

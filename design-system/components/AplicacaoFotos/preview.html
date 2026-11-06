@@ -1,0 +1,87 @@
+<!-- @dsCard group="Fotografia" page height=1120 width=960 subtitle="Seis composições de página da apresentação, no palco de 1920" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 10px}
+  .cap span{font-weight:400;text-transform:none}
+  .wrap{padding:32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:28px 24px}
+  .mini{position:relative;width:100%;aspect-ratio:16 / 9;overflow:hidden;--k:.2375}
+  .st{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;transform:scale(var(--k))}
+  .stage{position:absolute;inset:0;overflow:hidden;color:var(--ink)}
+  .stage .li-chrome{color:var(--ink-muted)}
+  .stage[data-theme="dark"] .li-chrome{color:var(--nevoa)}
+  .stage p{margin:0}
+  .cap{margin:10px 0 0}
+  .amb{color:var(--ambar) !important}
+  .big{font-size:1.24em}
+  .serif{font-family:var(--font-serif);font-style:italic;line-height:.8;letter-spacing:-.02em}
+  .body{font-family:var(--font-sans);font-size:20px;line-height:1.3;letter-spacing:-.01em;color:var(--ink)}
+  .lab{font-family:var(--font-sans);font-weight:700;font-size:16px;color:var(--ambar)}
+  .client{font-family:var(--font-sans);font-weight:700;font-size:16px;color:var(--ink-muted)}
+  .say{font-family:var(--font-sans);font-size:36px;line-height:1.1;letter-spacing:-.01em;color:var(--nevoa)}
+  .small{font-family:var(--font-sans);font-size:22px;line-height:1.15;color:var(--nevoa)}
+  .row .li-stat{grid-template-columns:auto auto}
+  .big-l .li-stat--l .li-stat__num{font-size:86px}
+</style></head>
+<body>
+<div class="wrap">
+  <section><div class="mini"><div class="st" id="s1"></div></div><p class="cap">1 · Véu denso <span>· Photo fill + veil denso</span></p></section>
+  <section><div class="mini"><div class="st" id="s2"></div></div><p class="cap">2 · Faixa e costura <span>· veil leve + título atravessando</span></p></section>
+  <section><div class="mini"><div class="st" id="s3"></div></div><p class="cap">3 · Meia página <span>· foto sangrada + stat-xl</span></p></section>
+  <section><div class="mini"><div class="st" id="s4"></div></div><p class="cap">4 · Some no grafite <span>· fade direita</span></p></section>
+  <section><div class="mini"><div class="st" id="s5"></div></div><p class="cap">5 · Título na borda <span>· PhotoGrid trio + Display</span></p></section>
+  <section><div class="mini"><div class="st" id="s6"></div></div><p class="cap">6 · Número sobre a foto <span>· números atravessando a base</span></p></section>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  function A(style, kids, extra) { return h('div', Object.assign({ style: Object.assign({ position: 'absolute' }, style) }, extra || {}), kids); }
+  function Stage(theme, bg, kids) { return h('div', { className: 'stage', 'data-theme': theme, style: { background: bg } }, kids, h(L.Chrome)); }
+  ReactDOM.createRoot(document.getElementById('s1')).render(Stage('dark', 'var(--grafite)', [
+    h(L.Photo, { key: 'p', fill: true, src: '/_blob/bafef56af9d9fff8df474b4addd4a993', alt: 'Equipe da LIVEIDEA', veil: 'denso' }),
+    A({ left: 255, top: 340, width: 1400 }, h(L.Headline, { size: 145, as: 'p', style: { lineHeight: 0.92 } }, h('span', { style: { paddingLeft: 235 } }, 'CONFIANÇA'), h('br'), 'CONSTRUÍDA', h('span', { style: { paddingLeft: 200 } }, 'A'), h('br'), h('span', { style: { paddingLeft: 380 } }, 'CADA '), h('em', { className: 'amb big' }, 'entrega.')), { key: 't' }),
+    A({ left: 236, top: 860, display: 'flex', gap: 110 }, [h(L.Stat, { key: 1, size: 'l', rule: false, value: '+40', label: 'EMPRESAS ATENDIDAS' }), h(L.Stat, { key: 2, size: 'l', rule: false, value: '+600', label: 'PROJETOS EXECUTADOS' }), h(L.Stat, { key: 3, size: 'l', rule: false, value: '+2', unit: 'milhões', label: 'DE PESSOAS IMPACTADAS' })], { key: 'n', className: 'row' })
+  ]));
+  ReactDOM.createRoot(document.getElementById('s2')).render(Stage('dark', 'var(--grafite)', [
+    A({ left: -18, top: -27, width: 1938, height: 660 }, h(L.Photo, { fill: true, src: '/_blob/3881e019887530f57ac8d6efd533ea4c', alt: 'Equipe com a camiseta da marca', veil: 'leve', focus: '50% 30%' }), { key: 'p' }),
+    A({ left: 262, top: 590 }, h(L.Headline, { size: 145, as: 'p', style: { lineHeight: 0.95 } }, 'ARE', h('br'), h('span', { style: { paddingLeft: 138 } }, 'YOU')), { key: 't' }),
+    A({ left: 750, top: 680 }, h('p', { className: 'serif', style: { fontSize: 200, color: 'var(--laranja)' } }, 'ready?'), { key: 'q' }),
+    A({ left: 1281, top: 722, width: 380 }, h('p', { className: 'body' }, 'Por isso, nossa estratégia é desenhada com precisão e a nossa atenção jamais é terceirizada.'), { key: 'b' })
+  ]));
+  ReactDOM.createRoot(document.getElementById('s3')).render(Stage('light', 'var(--cinza)', [
+    A({ left: -18, top: -10, width: 1005, height: 1112 }, h(L.Photo, { fill: true, src: '/_blob/d2be6b25be56727198731df07c8a8600', alt: 'Encontro de Líderes 2026' }), { key: 'p' }),
+    A({ left: 1086, top: 225, width: 760 }, h(L.Headline, { size: 66, as: 'p', style: { lineHeight: 1.08 } }, 'BPO da', h('br'), h('em', null, 'maior farmacêutica'), h('br'), 'da América Latina'), { key: 't' }),
+    A({ left: 1066, top: 507, width: 753, borderTop: '1px solid var(--rule-strong)' }, [h(L.Stat, { key: 1, size: 'xl', value: '3.178', label: 'EVENTOS GERIDOS E ATENDIDOS', note: 'ATÉ ABRIL DE 2026', style: { gridTemplateColumns: 'auto minmax(0,1fr)', padding: '20px 0 40px', borderBottomColor: 'var(--rule-strong)' } }), h(L.Stat, { key: 2, size: 'xl', value: '260', label: 'EVENTOS EXECUTADOS DIRETAMENTE', note: 'PELA OPERAÇÃO DA LIVEIDEA', style: { gridTemplateColumns: 'auto minmax(0,1fr)', padding: '20px 0 40px', borderBottomColor: 'var(--rule-strong)' } })], { key: 'n' })
+  ]));
+  ReactDOM.createRoot(document.getElementById('s4')).render(Stage('dark', 'var(--grafite)', [
+    h(L.Photo, { key: 'p', fill: true, src: '/_blob/e2ac1d13f58f4f5d32e173a6d769404e', alt: 'Exposição O Brasil de Tarsila', fade: 'direita', focus: '20% 50%' }),
+    A({ left: 171, top: 162 }, h('p', { className: 'lab' }, 'ALCANCE E AUDIÊNCIA'), { key: 'l' }),
+    A({ left: 165, top: 222 }, h(L.Display, { as: 'p', size: 142, style: { color: 'var(--nevoa)' } }, 'O ', h('span', { className: 'li-sbi' }, 'BRASIL'), ' DE', h('br'), h('i', null, 'Tarsila')), { key: 't' }),
+    A({ left: 960, top: 110, width: 735 }, ['+70 mil|VISITANTES ATÉ OUTUBRO DE 2026', '112|VEICULAÇÕES NA IMPRENSA', '+1,6 milhões|DE PESSOAS ALCANÇADAS', '+7,7 milhões|DE VISUALIZAÇÕES', '+156 mil|ENGAJAMENTO', '+17 mil|SEGUIDORES NO PERFIL'].map(function (s, i) { var p = s.split('|'); return h(L.Stat, { key: i, size: 'l', value: p[0], label: p[1], style: { gridTemplateColumns: '1.1fr 1fr', padding: '22px 0 20px' } }); }), { key: 'n', className: 'big-l' })
+  ]));
+  ReactDOM.createRoot(document.getElementById('s5')).render(Stage('light', 'var(--nevoa)', [
+    A({ left: 118, top: 221, width: 1711 }, h(L.PhotoGrid, { layout: 'trio', gap: 's', photos: [{ src: '/_blob/676e483e2619240741710a0c13615e26', alt: 'Ativação' }, { src: '/_blob/3c473f22a24df28d48e7a652e24aff1f', alt: 'Plenária' }, { src: '/_blob/b7e52bdb8d516e6dde2f0b54ca976d14', alt: 'Degustação' }] }), { key: 'g' }),
+    A({ left: 496, top: 160 }, h('p', { className: 'client' }, 'AAK'), { key: 'c' }),
+    A({ left: 570, top: 92, zIndex: 2 }, h(L.Display, { as: 'p', size: 180 }, 'PRIMEIRA ', h('i', null, 'classe')), { key: 't' }),
+    A({ left: 188, top: 850, width: 560 }, h('p', { className: 'body' }, 'Demos vida a uma experiência imersiva inspirada no universo da aviação que combinou conteúdo estratégico, degustações técnicas e ativações criativas.'), { key: 'b' }),
+    A({ left: 828, top: 800, width: 900, display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 56 }, [h(L.Stat, { key: 1, value: '100', label: 'PARTICIPANTES' }), h(L.Stat, { key: 2, value: '61', label: 'PARTICIPAÇÕES NA ATIVAÇÃO' }), h(L.Stat, { key: 3, value: '6', label: 'PROTÓTIPOS PARA DEGUSTAÇÃO' })], { key: 'n' })
+  ]));
+  ReactDOM.createRoot(document.getElementById('s6')).render(Stage('dark', 'var(--grafite)', [
+    A({ left: 123, top: 206, width: 868, height: 555 }, h(L.Photo, { fill: true, src: '/_blob/143e262ed0d1040e9405b8f1a17a0bf5', alt: 'Sócios recebendo o prêmio Agência do Ano' }), { key: 'p1' }),
+    A({ left: 1025, top: 206, width: 391, height: 555 }, h(L.Photo, { fill: true, src: '/_blob/fe08201a022788a4400ae19aa902fd5d', alt: 'Pedro Biondi com os troféus do Bex Awards', focus: '50% 20%' }), { key: 'p2' }),
+    A({ left: 1452, top: 206, width: 345, height: 555 }, h(L.Photo, { fill: true, src: '/_blob/140e3d843bf99e4ba249dcf5ac117d45', alt: 'Troféus' }), { key: 'p3' }),
+    A({ left: 140, top: 615 }, h('p', { className: 'serif', style: { fontSize: 190, color: 'var(--laranja)' } }, '2x'), { key: 'n1' }),
+    A({ left: 340, top: 690 }, h('p', { className: 'say' }, h('b', null, 'Ouro'), ' como', h('br'), h('b', null, 'Agência do Ano')), { key: 'h1' }),
+    A({ left: 336, top: 790 }, h('p', { className: 'small' }, '(Bex Awards 2026 e', h('br'), 'Prêmio Live 2025).'), { key: 'c1' }),
+    A({ left: 1040, top: 615 }, h('p', { className: 'serif', style: { fontSize: 190, color: 'var(--laranja)' } }, '14'), { key: 'n2' }),
+    A({ left: 1205, top: 690 }, h('p', { className: 'say' }, 'prêmios', h('br'), 'do setor'), { key: 'h2' }),
+    A({ left: 1205, top: 790 }, h('p', { className: 'small' }, '(Prêmio Caio,', h('br'), 'Prêmio Live,', h('br'), 'Bex Awards).'), { key: 'c2' }),
+    A({ left: 1468, top: 785 }, h('p', { className: 'small', style: { fontSize: 25 } }, 'Integrante do', h('br'), 'Ranking Live MKT nacional'), { key: 'c3' })
+  ]));
+  function fit() { document.querySelectorAll('.mini').forEach(function (m) { m.style.setProperty('--k', m.clientWidth / 1920); }); }
+  fit(); new ResizeObserver(fit).observe(document.body);
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- @dsCard group="Ações" height=520 width=960 subtitle="Variantes sobre névoa e os controles do player sobre foto" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .cap{font-family:var(--font-grotesk);font-weight:700;font-size:12px;line-height:1.4;text-transform:uppercase;color:var(--ink-muted);margin:0 0 10px}
+  .cap span{font-weight:400;text-transform:none}
+  .wrap{padding:32px 40px}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:28px}
+  .stage{position:relative;height:220px}
+  .stage .li-photo__over{left:0;right:0;bottom:0;top:0}
+  .bar{position:absolute;left:20px;right:20px;bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .side{display:flex;align-items:center;gap:8px}
+  .side:first-child{gap:12px}
+  .count{font-family:var(--font-grotesk);font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--nevoa)}
+  .prog{position:absolute;left:0;right:0;bottom:0}
+</style></head>
+<body>
+<div class="wrap">
+  <p class="cap">Sobre fundo claro <span>· primary, inverse, outline</span></p>
+  <div class="row" id="a"></div>
+  <p class="cap">Tamanhos e estados <span>· lg, md, sm, desativado</span></p>
+  <div class="row" id="b"></div>
+  <p class="cap">Sobre foto <span>· glass, os controles da apresentação</span></p>
+  <div class="stage" id="c"></div>
+</div>
+<script>
+  var L = window.LiveIdea, h = React.createElement, F = React.Fragment;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(F, null, h(L.Button, { href: 'https://www.liveidea.com.br/' }, 'VER O CASE'), h(L.Button, { variant: 'inverse' }, 'FALE COM A GENTE'), h(L.Button, { variant: 'outline', icon: 'next' }, 'PRÓXIMO CASE'), h(L.Button, { variant: 'outline', icon: 'out', href: 'https://www.instagram.com/liveidea.ag/' }, 'INSTAGRAM')));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(F, null, h(L.Button, { size: 'lg' }, 'FALE COM A GENTE'), h(L.Button, null, 'LEIA'), h(L.Button, { size: 'sm', variant: 'inverse' }, 'Início'), h(L.Button, { variant: 'outline', disabled: true }, 'PRÓXIMO CASE')));
+  ReactDOM.createRoot(document.getElementById('c')).render(h(L.Photo, { fill: true, src: '/_blob/d2be6b25be56727198731df07c8a8600', alt: 'Palco do Encontro de Líderes', focus: '50% 40%', veil: 'leve' },
+    h('div', { className: 'bar' },
+      h('div', { className: 'side' }, h('span', { className: 'count' }, '08 / 35'), h(L.Button, { variant: 'glass', size: 'sm' }, 'Início')),
+      h('div', { className: 'side' }, h(L.Button, { variant: 'glass', size: 'sm', icon: 'prev' }, 'Voltar'), h(L.Button, { variant: 'glass', size: 'sm', icon: 'next' }, 'Avançar'), h(L.Button, { variant: 'glass', size: 'sm' }, 'Tela cheia'))),
+    h(L.ProgressBar, { value: 8 / 35, className: 'prog' })));
+</script>
+</body>
+</html>

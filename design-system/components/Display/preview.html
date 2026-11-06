@@ -1,0 +1,18 @@
+<!-- @dsCard group="Tipografia" height=330 width=960 subtitle="Manifesto e nome de case" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  .wrap{padding:56px 40px 40px;display:flex;flex-direction:column;gap:64px}
+</style></head>
+<body>
+<div class="wrap"><div id="a"></div><div id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.Display, { size: 132 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM', h('b', null, ' VIDA')));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.Display, { size: 132, as: 'h2' }, h('span', { className: 'li-sbi' }, 'REINVENTANDO '), h('em', null, 'O '), h('i', null, 'futuro')));
+</script>
+</body>
+</html>

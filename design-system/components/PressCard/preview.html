@@ -1,0 +1,20 @@
+<!-- @dsCard group="Conteúdo" height=560 width=1000 subtitle="Parede de imprensa da exposição Tarsila" -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>prévia</title>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface);color:var(--ink);font-family:var(--font-sans)}
+  body{background:var(--ambar)}
+  .wall{padding:40px;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:start}
+  #b{margin-top:120px}
+</style></head>
+<body>
+<div class="wall"><div id="a"></div><div id="b"></div></div>
+<script>
+  var L = window.LiveIdea, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('a')).render(h(L.PressCard, { size: 60, headline: 'É uma espécie de antropofagia', dek: 'Os bastidores da maior exposição imersiva de Tarsila do Amaral', date: '14, agosto, 2026.', outlet: 'Bravo!', href: 'https://bravo.abril.com.br/arte/exposicao-imersiva-tarsila-do-amaral-sao-paulo-nubank-arte-lab/' }));
+  ReactDOM.createRoot(document.getElementById('b')).render(h(L.PressCard, { size: 36, headline: 'São Paulo lança exposição imersiva de Tarsila do Amaral', date: '12, agosto, 2026.', outlet: 'Terra', href: 'https://www.terra.com.br/vida-e-estilo/sao-paulo-lanca-exposicao-imersiva-de-tarsila-do-amaral-saiba-mais,adda2e9e0b6ae3720493af5af420c0dell618dhi.html' }));
+</script>
+</body>
+</html>
