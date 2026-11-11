@@ -1,3 +1,5 @@
+_Versão 1.2.0 · 11, novembro, 2026. O que mudou em cada versão está na seção Histórico de versões (`CHANGELOG.md`)._
+
 A LIVEIDEA é uma agência de live marketing de Campinas: eventos corporativos, ativações, festivais e projetos proprietários. A assinatura é **Ideias que ganham vida**. Este sistema sai da apresentação comercial 2027 e vale para tudo o que a agência comunica em nome próprio: a apresentação institucional, as apresentações de projetos para clientes, o site, documentos e redes. Peças de eventos de clientes não usam este sistema: cada evento segue o design system do próprio cliente.
 
 A marca tem dois laranjas, um grafite e um branco quente. A força está na tipografia: um condensado gigante, uma serifa itálica que corta o título no meio e uma sans limpa para o resto.

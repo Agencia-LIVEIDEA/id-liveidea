@@ -13,12 +13,14 @@ apresentação institucional, apresentações de projeto, site, documentos e red
   tipografia, layout, fotografia, logo, iconografia, movimento e componentes.
 - [`design-system/tokens.json`](design-system/tokens.json): todos os tokens (cor nos temas Claro e
   Grafite, tipografia, espaçamento, raios), cada um com nota de uso.
+- [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md): histórico de versões.
 
 ## Estrutura
 
 ```
 design-system/
 ├── README.md              brand book
+├── CHANGELOG.md           histórico de versões (semver)
 ├── design-system.json     índice: título, namespace, grupos de assets e ordem
 ├── tokens.json            tokens de cor, tipo, espaçamento e raio
 ├── assets/
@@ -49,3 +51,13 @@ design-system/
   depois de mudar lá, sincronize este repositório (e vice-versa).
 - **Peças de eventos de clientes não usam este sistema**: cada evento segue o design system do
   próprio cliente.
+
+## Versionamento
+
+Versão atual: **1.2.0** (ver [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md)).
+
+- **Semver.** MAJOR quando quem usa precisa mudar o próprio trabalho (token renomeado ou removido, prop removida, componente retirado); MINOR para regra ou componente novo e mudança visual de componente existente; PATCH para correção de texto, exemplo ou prévia.
+- **Toda mudança passa por pull request** numa branch própria. O PR atualiza o `CHANGELOG.md`, a linha de versão no topo do `design-system/README.md`, o `meta.release` do `tokens.json` e o `lastChange` do `design-system.json`.
+- **Sincronização no mesmo ciclo.** O design system do claude.ai é atualizado junto com o PR, a partir da versão publicada (ler antes de publicar), e a nota do `lastChange` começa pela versão (`v1.2.0 · …`).
+- **Tag depois do merge.** Com o PR na `main`, crie a tag `vX.Y.Z` no commit do merge (`git tag v1.2.0 <commit> && git push origin v1.2.0`) e, se quiser, uma release no GitHub com o trecho do CHANGELOG.
+
