@@ -41,7 +41,7 @@
 
   var pages = [
     ['Capa padrão LIVEIDEA', 'Sempre a primeira. Igual em toda apresentação.', P('lar', [
-      logo(517), h(L.Ghost, { key: 'g', size: 307 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])],
+      logo(517), h(L.Ghost, { key: 'g', size: 280 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])],
     ['Capa do projeto', 'Mesmo esqueleto da capa padrão, com título em duas vozes e o conceito no Ghost.', P('lar', [
       logo(250),
       A({ top: 380 }, h('h1', { className: 'hl', style: { margin: 0, fontSize: 108, color: 'var(--nevoa)' } }, 'Verão Grupo EMS 2026', h('em', { style: { display: 'block', color: 'var(--grafite)' } }, 'nova proposta de KV')), 'center'),
@@ -90,11 +90,11 @@
       h(L.Chrome, { key: 'c' })])],
     ['Abertura de capítulo', 'Título em duas vozes centralizado e a frase do capítulo no Ghost.', P('lar', [
       A({ top: 330 }, h('h2', { className: 'hl', style: { margin: 0, fontSize: 108, color: 'var(--nevoa)' } }, 'Desdobramentos', h('em', { style: { display: 'block', color: 'var(--grafite)' } }, 'do KV para o evento')), 'center'),
-      h(L.Ghost, { key: 'g', size: 400 }, h('b', null, 'DO KV À '), h('i', null, 'experiência')), h(L.Chrome, { key: 'c' })])],
+      h(L.Ghost, { key: 'g', size: 361 }, h('b', null, 'DO KV À '), h('i', null, 'experiência')), h(L.Chrome, { key: 'c' })])],
     ['Fechamento', 'A palavra do conceito em serifa gigante, o logo e a assinatura no Ghost.', P('lar', [
       A({ top: 274, fontSize: 300, color: 'var(--nevoa)' }, 'Saúde!', 'serif center'),
       logo(641),
-      h(L.Ghost, { key: 'g', size: 307 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])]
+      h(L.Ghost, { key: 'g', size: 280 }, h('b', null, 'IDEIAS '), h('em', null, 'QUE'), ' GANHAM ', h('b', null, 'VIDA')), h(L.Chrome, { key: 'c' })])]
   ];
 
   ReactDOM.createRoot(document.getElementById('w')).render(h(React.Fragment, null, pages.map(function (pg, i) {
