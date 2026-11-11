@@ -1,3 +1,5 @@
+_Versão 1.2.0 · 11, novembro, 2026. O que mudou em cada versão está na seção Histórico de versões (`CHANGELOG.md`)._
+
 A LIVEIDEA é uma agência de live marketing de Campinas: eventos corporativos, ativações, festivais e projetos proprietários. A assinatura é **Ideias que ganham vida**. Este sistema sai da apresentação comercial 2027 e vale para tudo o que a agência comunica em nome próprio: a apresentação institucional, as apresentações de projetos para clientes, o site, documentos e redes. Peças de eventos de clientes não usam este sistema: cada evento segue o design system do próprio cliente.
 
 A marca tem dois laranjas, um grafite e um branco quente. A força está na tipografia: um condensado gigante, uma serifa itálica que corta o título no meio e uma sans limpa para o resto.
@@ -72,7 +74,7 @@ Este é o sistema da própria agência: serve a tudo o que a LIVEIDEA assina com
 | Site | coluna fluida, mobile até 640px | a versão mobile (landing) da apresentação |
 | Outras: documentos e redes | o formato da peça | tokens, tipografia e fotografia |
 
-**Toda apresentação abre com a capa padrão da LIVEIDEA**, institucional ou de projeto, antes de qualquer outra página. A capa padrão tem fundo `laranja` em página inteira, o logo `liveidea-nevoa` pequeno no centro e a assinatura IDEIAS *QUE* GANHAM VIDA em `display-manifesto` âmbar a 50% de opacidade sangrando a base da página. As marcas de borda vão em névoa. Ela é sempre a mesma: não leva cliente, título, data nem foto. A capa do projeto (cliente, nome do projeto, data e local) vem logo depois, como segunda página, e repete o esqueleto da capa padrão: fundo laranja, logo névoa pequeno no topo, título em duas vozes no centro e o nome do conceito no Ghost, sangrando a base.
+**Toda apresentação abre com a capa padrão da LIVEIDEA**, institucional ou de projeto, antes de qualquer outra página. A capa padrão tem fundo `laranja` em página inteira, o logo `liveidea-nevoa` pequeno no centro e a assinatura IDEIAS *QUE* GANHAM VIDA em `display-manifesto` âmbar a 50% de opacidade, centralizada e sangrando a base da página. As marcas de borda vão em névoa. Ela é sempre a mesma: não leva cliente, título, data nem foto. A capa do projeto (cliente, nome do projeto, data e local) vem logo depois, como segunda página, e repete o esqueleto da capa padrão: fundo laranja, logo névoa pequeno no topo, título em duas vozes no centro e o nome do conceito no Ghost, centralizado e sangrando a base.
 
 ### Apresentações de projeto
 
@@ -104,6 +106,7 @@ A proposta de KV e conceito (referência: Verão Grupo EMS 2026, página Propost
 - O Eyebrow numera os passos do argumento (insight, tese, conceito, moodboard, KV). Capas, aberturas, peças e fechamento não levam número.
 - Sobre névoa, o Eyebrow fica em grafite, e o número das listas em 52px no mínimo: laranja abaixo de 52px não passa no contraste (ver Cor).
 - A peça do cliente (KV, lettering, mockups) aparece como imagem e mantém as cores dela. O resto da página segue a LIVEIDEA.
+- **Ghost sempre em caixa-alta e centralizado.** Na capa padrão, na capa do projeto, nas aberturas e no fechamento, a frase do Ghost vai inteira em caixa-alta, inclusive a palavra em Light Italic ("BASTIDOR *IMPECÁVEL*", "COMO *PODEMOS*?"), e centralizada na largura da página. A frase aparece inteira: se for mais larga que a página, o corpo diminui até caber, com respiro de 60px de cada lado. Só a base continua cortada. A assinatura IDEIAS *QUE* GANHAM VIDA cabe inteira em 280px no palco de 1920 (140pt no PowerPoint). Prefira frases de até três ou quatro palavras: assim o corpo fica perto do `display-manifesto` e o tamanho varia pouco entre as aberturas.
 - No PowerPoint, exporte o Ghost e o lettering do cliente como PNG transparente. Assim o arquivo abre igual em qualquer máquina.
 
 ### Site
@@ -189,5 +192,5 @@ Os componentes ficam em `window.LiveIdea` (React 18). Todos leem os tokens deste
 - **Eyebrow**: marcador de seção da proposta (01 · INSIGHT).
 - **NumberedList**: lista numerada com fio, como a anatomia do KV.
 - **Steps**: argumento em colunas numeradas, como o conceito em três tempos.
-- **Ghost**: título display translúcido sangrando a base da capa, das aberturas e do fechamento.
+- **Ghost**: título display translúcido em caixa-alta, centralizado e sangrando a base da capa, das aberturas e do fechamento.
 - **Proposta criativa**: página de referência com o roteiro da proposta, da capa padrão ao fechamento.
