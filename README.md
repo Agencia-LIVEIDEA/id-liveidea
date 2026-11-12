@@ -52,6 +52,31 @@ design-system/
 - **Peças de eventos de clientes não usam este sistema**: cada evento segue o design system do
   próprio cliente.
 
+## Skill: aplicar o design system com o Claude
+
+A skill [`liveidea-design-system`](.claude/skills/liveidea-design-system/SKILL.md) aplica este sistema
+em apresentações (.pptx), documentos (.docx, PDF) e artefatos HTML (artifacts, páginas, peças de redes).
+Ela não guarda cores, fontes nem regras: a cada uso, baixa a **última versão da `main`** deste
+repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit e informa a versão aplicada.
+
+- **Claude Code neste repositório:** a skill já está em `.claude/skills/` e carrega sozinha.
+- **claude.ai (Configurações > Capacidades > Skills):** rode `bash scripts/package-skill.sh` e envie
+  `dist/liveidea-design-system.zip`. Lá, o acesso ao repositório privado vem do conector GitHub; sem
+  ele, a skill pede o ZIP da `main` e não aplica a marca de memória.
+
+| Arquivo | Função |
+|---|---|
+| `scripts/sync_ds.sh` | baixa a `main` para um cache, valida a versão e monta o kit |
+| `scripts/build_kit.py` | gera `tokens.css`, `@font-face` (arquivos ou base64), `office.json` (pt, hex, nomes de fonte do Office) |
+| `scripts/liveidea_pptx.py` | helper python-pptx: capa padrão, capa do projeto, Ghost em PNG, Chrome, Stat, Eyebrow, foto com véu, fechamento |
+| `scripts/liveidea_docx.py` | helper python-docx: fundo névoa, títulos em duas vozes, números, tabelas com fio `rule` |
+| `scripts/render.js` | Playwright: Ghost e logos em PNG, prévia de páginas HTML e peças de redes |
+| `references/` | regras por formato e checklist de conformidade |
+
+Mudança de MINOR/PATCH no design system não exige mudar a skill. Se uma versão alterar capa, Ghost,
+Chrome ou grid, revise os modelos de `liveidea_pptx.py` e suba `TEMPLATES_FROM` no mesmo PR: o helper
+avisa quando o kit é mais novo que os modelos.
+
 ## Versionamento
 
 Versão atual: **1.2.0** (ver [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md)).
