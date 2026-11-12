@@ -61,8 +61,24 @@ repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit 
 
 - **Claude Code neste repositório:** a skill já está em `.claude/skills/` e carrega sozinha.
 - **claude.ai (Configurações > Capacidades > Skills):** rode `bash scripts/package-skill.sh` e envie
-  `dist/id-liveidea.zip`. Lá, o acesso ao repositório privado vem do conector GitHub; sem
+  `dist/id-liveidea.zip`. Lá, o acesso ao repositório privado vem do conector GitHub (veja abaixo); sem
   ele, a skill pede o ZIP da `main` e não aplica a marca de memória.
+- **Conector GitHub (recomendado no claude.ai).** É o que permite à skill ler a `main` do repositório
+  privado. Cada pessoa faz uma vez:
+  1. Abra https://claude.ai/customize/connectors, conecte o **GitHub** com a conta que tem acesso à
+     organização **Agencia-LIVEIDEA** e autorize.
+  2. Se o GitHub pedir, libere a organização e o repositório **id-liveidea**. Se o acesso não aparecer,
+     instale o app do Claude no repositório em https://github.com/apps/claude/installations/select_target
+     (só o dono da organização no GitHub consegue; se não for você, peça a ele).
+  3. Se o GitHub não aparecer na lista de conectores, o administrador da conta da agência no Claude
+     precisa habilitar o conector para a organização.
+  4. Abra uma conversa nova (conectores são carregados no início da conversa) e confira que o GitHub
+     está ativado nela.
+  5. Teste: peça a capa padrão de uma apresentação. A primeira resposta deve trazer a versão com o
+     commit (ex.: "v1.2.0, main @ ce5a99f").
+
+  O mesmo guia está na skill (`references/conectar-github.md`): ela o mostra quando não consegue ler o
+  repositório.
 - **Fontes no ZIP.** O empacotador copia as 18 fontes da `main` para `fonts/` do ZIP, com
   `fonts/VERSION` (versão e commit). Elas são a reserva quando a versão baixada vem sem fontes (o
   conector GitHub lê só texto). As fontes ficam fora do git na pasta da skill (`.gitignore`): em

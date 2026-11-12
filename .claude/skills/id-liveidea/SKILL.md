@@ -32,7 +32,9 @@ tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
    `design-system/CHANGELOG.md`, `design-system/components/bundle.js` e os SVGs de `design-system/assets/Logos`
    (e `Icones`, se for usar), salve numa pasta com essa mesma estrutura e rode
    `bash <skill>/scripts/sync_ds.sh --local <pasta>`. As fontes não precisam vir: a skill usa as do próprio pacote.
-2. Sem conector, peça ao usuário o ZIP da `main` (GitHub > Code > Download ZIP) e rode
+2. Sem conector, ou com o conector sem acesso ao repositório: **recomende conectar o GitHub** e mostre o
+   passo a passo de `references/conectar-github.md`. É o caminho principal. Só se o usuário não quiser ou
+   não puder conectar agora, peça o ZIP da `main` (GitHub > Code > Download ZIP) e rode
    `bash <skill>/scripts/sync_ds.sh --from-zip <arquivo.zip>`. Diga que não deu para confirmar se é a última versão.
 3. **Nunca aplique a marca de memória** nem com valores de uma conversa anterior. Sem fonte, pare e explique.
 
