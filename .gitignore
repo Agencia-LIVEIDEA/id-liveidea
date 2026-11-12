@@ -1,4 +1,4 @@
 dist/
 __pycache__/
 *.pyc
-.claude/skills/liveidea-design-system/fonts/
+.claude/skills/id-liveidea/fonts/

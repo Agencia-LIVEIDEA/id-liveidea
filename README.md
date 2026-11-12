@@ -54,14 +54,14 @@ design-system/
 
 ## Skill: aplicar o design system com o Claude
 
-A skill [`liveidea-design-system`](.claude/skills/liveidea-design-system/SKILL.md) aplica este sistema
+A skill [`id-liveidea`](.claude/skills/id-liveidea/SKILL.md) aplica este sistema
 em apresentações (.pptx), documentos (.docx, PDF) e artefatos HTML (artifacts, páginas, peças de redes).
 Ela não guarda cores, fontes nem regras: a cada uso, baixa a **última versão da `main`** deste
 repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit e informa a versão aplicada.
 
 - **Claude Code neste repositório:** a skill já está em `.claude/skills/` e carrega sozinha.
 - **claude.ai (Configurações > Capacidades > Skills):** rode `bash scripts/package-skill.sh` e envie
-  `dist/liveidea-design-system.zip`. Lá, o acesso ao repositório privado vem do conector GitHub; sem
+  `dist/id-liveidea.zip`. Lá, o acesso ao repositório privado vem do conector GitHub; sem
   ele, a skill pede o ZIP da `main` e não aplica a marca de memória.
 - **Fontes no ZIP.** O empacotador copia as 18 fontes da `main` para `fonts/` do ZIP, com
   `fonts/VERSION` (versão e commit). Elas são a reserva quando a versão baixada vem sem fontes (o

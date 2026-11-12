@@ -10,7 +10,7 @@
 # Variáveis opcionais:
 #   LIVEIDEA_DS_REPO   URL do repositório (padrão: https://github.com/Agencia-LIVEIDEA/id-liveidea.git)
 #   LIVEIDEA_DS_BRANCH branch de referência (padrão: main)
-#   LIVEIDEA_DS_CACHE  pasta do cache (padrão: ~/.cache/liveidea-design-system)
+#   LIVEIDEA_DS_CACHE  pasta do cache (padrão: ~/.cache/id-liveidea)
 #
 # Saída (stdout, uma por linha, para ler com `eval` ou copiar):
 #   DS_ROOT, DS_DIR, DS_KIT, DS_VERSION, DS_DATE, DS_COMMIT, DS_SOURCE, DS_LATEST_TAG
@@ -20,7 +20,7 @@ set -euo pipefail
 
 REPO="${LIVEIDEA_DS_REPO:-https://github.com/Agencia-LIVEIDEA/id-liveidea.git}"
 BRANCH="${LIVEIDEA_DS_BRANCH:-main}"
-CACHE="${LIVEIDEA_DS_CACHE:-$HOME/.cache/liveidea-design-system}"
+CACHE="${LIVEIDEA_DS_CACHE:-$HOME/.cache/id-liveidea}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODE="git"; ARG=""
 

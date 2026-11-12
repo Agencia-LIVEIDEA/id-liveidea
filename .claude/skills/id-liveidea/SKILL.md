@@ -1,5 +1,5 @@
 ---
-name: liveidea-design-system
+name: id-liveidea
 description: Aplica o design system da LIVEIDEA, sempre na última versão da branch main do repositório GitHub Agencia-LIVEIDEA/id-liveidea, em apresentações (PowerPoint, decks, propostas criativas, apresentações de projeto), documentos (Word, PDF, propostas comerciais, orçamentos, relatórios) e artefatos gerados (páginas HTML, artifacts, landing pages, peças de redes). Use sempre que for criar, adaptar ou revisar qualquer material que a LIVEIDEA assina em nome próprio, mesmo quando o pedido só diz "no padrão da agência", "com a nossa identidade", "com a cara da LIVEIDEA", "no nosso template" ou cita a marca LIVEIDEA. Não use para peças de eventos de clientes (cenografia, credenciais, KVs do cliente), que seguem o design system do próprio cliente.
 ---
 
