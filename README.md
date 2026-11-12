@@ -79,11 +79,15 @@ repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit 
 
   O mesmo guia está na skill (`references/conectar-github.md`): ela o mostra quando não consegue ler o
   repositório.
-- **Fontes no ZIP.** O empacotador copia as 18 fontes da `main` para `fonts/` do ZIP, com
-  `fonts/VERSION` (versão e commit). Elas são a reserva quando a versão baixada vem sem fontes (o
-  conector GitHub lê só texto). As fontes ficam fora do git na pasta da skill (`.gitignore`): em
-  Claude Code, a skill usa as do repositório. **O ZIP leva fontes licenciadas: uso interno, não
-  compartilhe fora da LIVEIDEA.** Reempacote e reenvie quando uma versão mudar as fontes.
+- **Cópia do design system no ZIP.** O empacotador copia o `design-system/` da `main` (fontes, fotos,
+  logos, regras) para `snapshot/` dentro do ZIP, com `snapshot/VERSION` (versão, data e commit). Ela
+  serve de reserva para as fontes quando o conector traz só texto e, **em último caso**, para seguir
+  sem acesso ao repositório: a skill só usa a cópia com o "sim" do usuário, depois de dizer a versão e a
+  data dela, e registra isso na entrega. A ordem é: conector GitHub → ZIP da `main` enviado na conversa
+  → cópia do pacote. A cópia fica fora do git (`.gitignore`): no Claude Code, a skill lê a `main` direto.
+  **O ZIP leva fontes licenciadas: uso interno, não compartilhe fora da LIVEIDEA.** Reempacote e reenvie a
+  cada versão nova do design system, para a cópia não ficar velha. Se o upload recusar o tamanho
+  (~8 MB), gere sem fotos: `bash scripts/package-skill.sh --sem-fotos`.
 
 | Arquivo | Função |
 |---|---|

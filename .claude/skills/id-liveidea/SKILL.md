@@ -27,21 +27,28 @@ bash <skill>/scripts/sync_ds.sh
 "Última versão" é a `main`: só entra o que foi mergeado. Branch ou PR aberto não conta. Se a última
 tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
 
-**Se o script sair com código 2 (sem acesso ao GitHub):**
-1. Tente o conector GitHub, se houver: leia da `main` `design-system/README.md`, `design-system/tokens.json`,
+**Se o script sair com código 2 (sem acesso ao GitHub), siga nesta ordem:**
+1. **Conector GitHub**, se houver na conversa: leia da `main` `design-system/README.md`, `design-system/tokens.json`,
    `design-system/CHANGELOG.md`, `design-system/components/bundle.js` e os SVGs de `design-system/assets/Logos`
    (e `Icones`, se for usar), salve numa pasta com essa mesma estrutura e rode
-   `bash <skill>/scripts/sync_ds.sh --local <pasta>`. As fontes não precisam vir: a skill usa as do próprio pacote.
-2. Sem conector, ou com o conector sem acesso ao repositório: **recomende conectar o GitHub** e mostre o
-   passo a passo de `references/conectar-github.md`. É o caminho principal. Só se o usuário não quiser ou
-   não puder conectar agora, peça o ZIP da `main` (GitHub > Code > Download ZIP) e rode
+   `bash <skill>/scripts/sync_ds.sh --local <pasta>`. Fontes e fotos não precisam vir: a skill usa as da cópia do pacote.
+2. **Sem conector, ou com o conector sem acesso ao repositório: recomende conectar o GitHub** e mostre o
+   passo a passo de `references/conectar-github.md`. É o caminho principal.
+3. Se o usuário não puder conectar agora: peça o **ZIP da `main`** (GitHub > Code > Download ZIP) e rode
    `bash <skill>/scripts/sync_ds.sh --from-zip <arquivo.zip>`. Diga que não deu para confirmar se é a última versão.
-3. **Nunca aplique a marca de memória** nem com valores de uma conversa anterior. Sem fonte, pare e explique.
+4. **Último caso: seguir com a cópia do pacote.** Se o usuário não puder conectar nem enviar o ZIP e quiser seguir
+   mesmo assim, ofereça a cópia do design system que veio no pacote da skill. Antes, diga a versão e a data dela
+   (`<skill>/snapshot/VERSION`) e que ela pode estar desatualizada. **Só use com o "sim" do usuário.** Então rode
+   `bash <skill>/scripts/sync_ds.sh --snapshot`, siga os passos normais e, na entrega, registre:
+   "Feito com a cópia do pacote (vX.Y.Z, de <data>), sem confirmar a versão atual. Revise quando o acesso ao
+   repositório voltar."
+5. **Nunca aplique a marca de memória** nem com valores de uma conversa anterior. Sem nenhuma das fontes acima, pare e explique.
 
-**Fontes do pacote.** O ZIP da skill traz as fontes em `<skill>/fonts` (versão em `fonts/VERSION`). Elas só
-entram quando a versão baixada vem sem os arquivos de fonte; o kit avisa e registra em `manifest.json`
-(`fonts_from_skill_package`). Se `fonts/VERSION` for de uma versão anterior a `DS_VERSION` e o CHANGELOG
-desde então mexer em fontes, avise o usuário que o pacote precisa ser reempacotado.
+**Cópia do pacote.** O ZIP da skill traz em `<skill>/snapshot/` uma cópia do design system tirada da `main` no
+empacotamento (versão em `snapshot/VERSION`). Além do último caso acima, as fontes dela são a reserva quando a
+versão baixada vem sem os arquivos de fonte; o kit avisa e registra em `manifest.json` (`fonts_from_skill_package`).
+Se a cópia for de uma versão anterior a `DS_VERSION`, avise o usuário que o pacote da skill precisa ser
+reempacotado e reenviado. No Claude Code, dentro do repositório, a cópia não existe: lá a skill lê a `main` direto.
 
 Código 3 = repositório inconsistente (versões divergentes): avise e não siga sem o usuário decidir.
 

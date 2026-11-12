@@ -24,16 +24,20 @@ Recomendo fazer isso uma vez só, em cinco minutos:
 5. **Peça de novo.** Na primeira resposta eu informo a versão aplicada (ex.: "v1.2.0, main @ ce5a99f").
    Se aparecer a versão com o commit, a conexão está funcionando.
 
-Se preferir não conectar agora: baixe o ZIP da `main` (no GitHub, botão **Code** > **Download ZIP**)
-e me envie aqui. Funciona, mas eu não consigo garantir que é a última versão, e vai ser preciso
-repetir isso a cada mudança do design system.
+Se não der para conectar agora, há duas alternativas, nesta ordem:
+- **Enviar o ZIP da `main`:** no GitHub, botão **Code** > **Download ZIP**, e me envie aqui. Funciona, mas eu
+  não consigo garantir que é a última versão, e vai ser preciso repetir isso a cada mudança do design system.
+- **Último caso, seguir com a cópia que vem na skill:** a skill traz uma cópia do design system da versão
+  <versão e data de snapshot/VERSION>. Posso fazer a peça com ela, mas, se o design system mudou depois disso,
+  a peça sai na versão antiga. Quer seguir assim?
 
 ## Regras para o Claude
 
-- Recomende o conector como caminho principal. O ZIP é o plano B, não a sugestão padrão.
+- Recomende o conector como caminho principal. O ZIP é o plano B. A cópia do pacote é o último caso e só
+  entra com o "sim" explícito do usuário, depois de ele saber a versão e a data da cópia.
 - Não peça senha, token ou código de autorização na conversa. A conexão é feita pelo próprio usuário
   nos links acima.
-- Não continue com a peça usando valores de memória enquanto o acesso não for resolvido. Pode adiantar
-  o texto e a estrutura do conteúdo, deixando claro que a marca será aplicada depois.
+- Não continue com a peça usando valores de memória. Enquanto o usuário decide, pode adiantar o texto e a
+  estrutura do conteúdo, deixando claro que a marca será aplicada depois.
 - Se o conector existe mas a leitura falha (erro de permissão ou "não encontrado"), o problema
   costuma ser o passo 2 (repositório não liberado). Diga isso ao usuário.

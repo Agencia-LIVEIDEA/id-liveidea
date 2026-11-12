@@ -20,7 +20,8 @@ Uso:
 import argparse, base64, datetime, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 
-BUNDLED_FONTS = Path(__file__).resolve().parent.parent / "fonts"  # fontes que vêm no ZIP da skill
+SNAPSHOT = Path(__file__).resolve().parent.parent / "snapshot"  # cópia do design system que vem no ZIP da skill
+BUNDLED_FONTS = SNAPSHOT / "design-system" / "fonts"
 PX_PER_PT = 2.0          # palco 1920 px = slide 16:9 de 960 pt  ->  2 px = 1 pt (regra do README)
 PX_PER_IN = 144.0        # 1920 px = 13,333 in
 
@@ -130,7 +131,7 @@ def chrome_text(ds):
 
 
 def _bundled_version():
-    v = BUNDLED_FONTS / "VERSION"
+    v = SNAPSHOT / "VERSION"
     return v.read_text(encoding="utf-8").strip() if v.exists() else "versão não registrada"
 
 

@@ -5,7 +5,8 @@
 # Uso:
 #   bash sync_ds.sh                    # clona ou atualiza o cache a partir da main e monta o kit
 #   bash sync_ds.sh --from-zip X.zip   # sem acesso ao GitHub: usa o ZIP baixado da main (Code > Download ZIP)
-#   bash sync_ds.sh --local DIR        # usa um checkout local (só para testar mudanças ainda não mergeadas)
+#   bash sync_ds.sh --local DIR        # usa uma pasta (conteúdo da main lido pelo conector, ou teste local)
+#   bash sync_ds.sh --snapshot         # ÚLTIMO CASO: cópia que veio no ZIP da skill (só com consentimento do usuário)
 #
 # Variáveis opcionais:
 #   LIVEIDEA_DS_REPO   URL do repositório (padrão: https://github.com/Agencia-LIVEIDEA/id-liveidea.git)
@@ -28,6 +29,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --from-zip) MODE="zip"; ARG="${2:?informe o arquivo .zip}"; shift 2 ;;
     --local)    MODE="local"; ARG="${2:?informe a pasta do checkout}"; shift 2 ;;
+    --snapshot) MODE="snapshot"; shift ;;
     -h|--help)  sed -n 2,20p "$0"; exit 0 ;;
     *) echo "Opção desconhecida: $1" >&2; exit 1 ;;
   esac
@@ -78,6 +80,15 @@ case "$MODE" in
     COMMIT="$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo desconhecido)"
     SOURCE="local:$(git -C "$ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo pasta)"
     log "ATENÇÃO: usando a pasta $ROOT, não o clone da main. Confirme que ela tem o conteúdo da main (conector GitHub) ou é teste de mudança ainda não mergeada."
+    ;;
+  snapshot)
+    ROOT="$(cd "$HERE/.." && pwd)/snapshot"
+    [ -f "$ROOT/design-system/tokens.json" ] || { log "Este pacote da skill não tem a cópia do design system (snapshot/)."; exit 2; }
+    SNAP="$(cat "$ROOT/VERSION" 2>/dev/null || echo 'versão não registrada')"
+    COMMIT="$(echo "$SNAP" | grep -oE '@[0-9a-f]{7,}' | tr -d @ || true)"; COMMIT="${COMMIT:-desconhecido}"
+    SOURCE="copia-do-pacote"
+    log "ÚLTIMO CASO: usando a cópia do design system que veio no pacote da skill ($SNAP)."
+    log "Ela pode estar desatualizada em relação à main. Informe isso ao usuário e registre na entrega."
     ;;
 esac
 
