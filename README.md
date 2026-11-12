@@ -63,6 +63,11 @@ repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit 
 - **claude.ai (Configurações > Capacidades > Skills):** rode `bash scripts/package-skill.sh` e envie
   `dist/liveidea-design-system.zip`. Lá, o acesso ao repositório privado vem do conector GitHub; sem
   ele, a skill pede o ZIP da `main` e não aplica a marca de memória.
+- **Fontes no ZIP.** O empacotador copia as 18 fontes da `main` para `fonts/` do ZIP, com
+  `fonts/VERSION` (versão e commit). Elas são a reserva quando a versão baixada vem sem fontes (o
+  conector GitHub lê só texto). As fontes ficam fora do git na pasta da skill (`.gitignore`): em
+  Claude Code, a skill usa as do repositório. **O ZIP leva fontes licenciadas: uso interno, não
+  compartilhe fora da LIVEIDEA.** Reempacote e reenvie quando uma versão mudar as fontes.
 
 | Arquivo | Função |
 |---|---|

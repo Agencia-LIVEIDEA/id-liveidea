@@ -77,7 +77,7 @@ case "$MODE" in
     ROOT="$(cd "$ARG" && pwd)"
     COMMIT="$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo desconhecido)"
     SOURCE="local:$(git -C "$ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo pasta)"
-    log "ATENÇÃO: usando checkout local, não a main do GitHub. Use só para testar mudanças do próprio design system."
+    log "ATENÇÃO: usando a pasta $ROOT, não o clone da main. Confirme que ela tem o conteúdo da main (conector GitHub) ou é teste de mudança ainda não mergeada."
     ;;
 esac
 

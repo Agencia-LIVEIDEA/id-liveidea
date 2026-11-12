@@ -20,6 +20,7 @@ Uso:
 import argparse, base64, datetime, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 
+BUNDLED_FONTS = Path(__file__).resolve().parent.parent / "fonts"  # fontes que vêm no ZIP da skill
 PX_PER_PT = 2.0          # palco 1920 px = slide 16:9 de 960 pt  ->  2 px = 1 pt (regra do README)
 PX_PER_IN = 144.0        # 1920 px = 13,333 in
 
@@ -64,6 +65,15 @@ def em(v):
     return float(s.replace("em", "")) if s.endswith("em") else (0.0 if s in ("0", "") else float(s))
 
 
+def font_path(ds, f):
+    """Arquivo da fonte: o da versão baixada; se faltar (ex.: conector que só lê texto), o do pacote da skill."""
+    p = ds / f["file"]
+    if p.exists():
+        return p
+    b = BUNDLED_FONTS / Path(f["file"]).name
+    return b if b.exists() else p
+
+
 def office_font_names(ds, fonts):
     """Lê na tabela 'name' de cada fonte o nome de família que o Office usa (name ID 1) e se o
     arquivo é o par Bold/Italic dessa família. Sem fontTools, usa a convenção da Adobe."""
@@ -75,7 +85,7 @@ def office_font_names(ds, fonts):
         have_ft = False
     for f in fonts:
         key = f"{f['family']}|{f['weight']}|{f['style']}"
-        path = ds / f["file"]
+        path = font_path(ds, f)
         if have_ft and path.exists():
             try:
                 t = TTFont(str(path))
@@ -117,6 +127,11 @@ def chrome_text(ds):
         left = m.group(1) if m else left
         right = n.group(1) if n else None
     return {"left": left, "right": right}
+
+
+def _bundled_version():
+    v = BUNDLED_FONTS / "VERSION"
+    return v.read_text(encoding="utf-8").strip() if v.exists() else "versão não registrada"
 
 
 def main():
@@ -214,13 +229,17 @@ def main():
     # ---------- fontes ----------
     (out / "fonts").mkdir()
     face, face_inline = [], []
-    missing = [f["file"] for f in fonts if not (ds / f["file"]).exists()]
+    missing = [f["file"] for f in fonts if not font_path(ds, f).exists()]
+    from_skill = [f["file"] for f in fonts if not (ds / f["file"]).exists() and font_path(ds, f).exists()]
+    if from_skill:
+        print(f"Aviso: {len(from_skill)} fonte(s) ausentes na versão baixada; usando as do pacote da skill "
+              f"({_bundled_version()}).", file=sys.stderr)
     if missing:
         print(f"Aviso: {len(missing)} arquivo(s) de fonte ausentes ({', '.join(missing[:3])}...). "
               "HTML e PNG vão cair nas fontes de reserva.", file=sys.stderr)
-    fonts_present = [f for f in fonts if (ds / f["file"]).exists()]
+    fonts_present = [f for f in fonts if font_path(ds, f).exists()]
     for f in fonts_present:
-        src = ds / f["file"]
+        src = font_path(ds, f)
         shutil.copy2(src, out / "fonts" / src.name)
         common = (f"font-family: \"{f['family']}\"; font-weight: {f['weight']}; "
                   f"font-style: {f['style']}; font-display: swap;")
@@ -237,7 +256,7 @@ def main():
         try:
             from fontTools.ttLib import TTFont
             for f in fonts_present:
-                t = TTFont(str(ds / f["file"]))
+                t = TTFont(str(font_path(ds, f)))
                 t.flavor = None
                 ext = ".otf" if "CFF " in t or "CFF2" in t else ".ttf"
                 t.save(str(ttf_dir / (Path(f["file"]).stem + ext)))
@@ -273,7 +292,8 @@ def main():
     manifest = {"version": meta.get("release"), "commit": a.commit, "source": a.source,
                 "tokens_revised": meta.get("revised"),
                 "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-                "ds_dir": str(ds.resolve()), "fonts_ttf": ttf_ok}
+                "ds_dir": str(ds.resolve()), "fonts_ttf": ttf_ok,
+                "fonts_from_skill_package": from_skill, "fonts_missing": missing}
     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Kit LIVEIDEA v{manifest['version']} ({a.commit}) em {out}"
           + ("" if have_ft else " · nomes de fonte do Office estimados (instale fonttools)"))

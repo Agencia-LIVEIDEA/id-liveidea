@@ -28,12 +28,18 @@ bash <skill>/scripts/sync_ds.sh
 tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
 
 **Se o script sair com código 2 (sem acesso ao GitHub):**
-1. Tente o conector GitHub, se houver: leia `design-system/README.md`, `design-system/tokens.json` e
-   `design-system/CHANGELOG.md` da `main`, salve numa pasta com essa mesma estrutura e rode
-   `bash <skill>/scripts/sync_ds.sh --local <pasta>` (fontes e logos também, se o formato precisar).
+1. Tente o conector GitHub, se houver: leia da `main` `design-system/README.md`, `design-system/tokens.json`,
+   `design-system/CHANGELOG.md`, `design-system/components/bundle.js` e os SVGs de `design-system/assets/Logos`
+   (e `Icones`, se for usar), salve numa pasta com essa mesma estrutura e rode
+   `bash <skill>/scripts/sync_ds.sh --local <pasta>`. As fontes não precisam vir: a skill usa as do próprio pacote.
 2. Sem conector, peça ao usuário o ZIP da `main` (GitHub > Code > Download ZIP) e rode
    `bash <skill>/scripts/sync_ds.sh --from-zip <arquivo.zip>`. Diga que não deu para confirmar se é a última versão.
 3. **Nunca aplique a marca de memória** nem com valores de uma conversa anterior. Sem fonte, pare e explique.
+
+**Fontes do pacote.** O ZIP da skill traz as fontes em `<skill>/fonts` (versão em `fonts/VERSION`). Elas só
+entram quando a versão baixada vem sem os arquivos de fonte; o kit avisa e registra em `manifest.json`
+(`fonts_from_skill_package`). Se `fonts/VERSION` for de uma versão anterior a `DS_VERSION` e o CHANGELOG
+desde então mexer em fontes, avise o usuário que o pacote precisa ser reempacotado.
 
 Código 3 = repositório inconsistente (versões divergentes): avise e não siga sem o usuário decidir.
 
