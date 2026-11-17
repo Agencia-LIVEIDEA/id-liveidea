@@ -22,6 +22,14 @@ from pathlib import Path
 
 SNAPSHOT = Path(__file__).resolve().parent.parent / "snapshot"  # cópia do design system que vem no ZIP da skill
 BUNDLED_FONTS = SNAPSHOT / "design-system" / "fonts"
+# Instalada como plugin (loja id-liveidea), não há snapshot/: a raiz do plugin é a do repositório e traz o
+# design-system/ da main. Só vale fora de um checkout git, para nunca usar o checkout de trabalho.
+_here = Path(__file__).resolve()
+_PLUGIN_ROOT = _here.parents[4] if len(_here.parents) > 4 else _here.parent  # caminho curto: não é plugin
+FROM_PLUGIN = (not BUNDLED_FONTS.is_dir() and (_PLUGIN_ROOT / ".claude-plugin" / "plugin.json").exists()
+               and (_PLUGIN_ROOT / "design-system" / "fonts").is_dir() and not (_PLUGIN_ROOT / ".git").exists())
+if FROM_PLUGIN:
+    BUNDLED_FONTS = _PLUGIN_ROOT / "design-system" / "fonts"
 PX_PER_PT = 2.0          # palco 1920 px = slide 16:9 de 960 pt  ->  2 px = 1 pt (regra do README)
 PX_PER_IN = 144.0        # 1920 px = 13,333 in
 
@@ -131,6 +139,11 @@ def chrome_text(ds):
 
 
 def _bundled_version():
+    if FROM_PLUGIN:
+        try:
+            return f"v{load(_PLUGIN_ROOT / 'design-system' / 'tokens.json')['meta'].get('release', '?')} · cópia do plugin id-liveidea"
+        except Exception:
+            return "cópia do plugin id-liveidea"
     v = SNAPSHOT / "VERSION"
     return v.read_text(encoding="utf-8").strip() if v.exists() else "versão não registrada"
 

@@ -1,0 +1,8 @@
+{
+  "name": "id-liveidea",
+  "description": "Design system da LIVEIDEA: a skill id-liveidea aplica a identidade em apresentações, documentos e páginas HTML, sempre na última versão da main.",
+  "author": {
+    "name": "LIVEIDEA · Martech"
+  },
+  "skills": "./.claude/skills/"
+}

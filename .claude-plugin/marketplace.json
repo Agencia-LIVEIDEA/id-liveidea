@@ -1,0 +1,15 @@
+{
+  "name": "id-liveidea",
+  "description": "Design system da LIVEIDEA para o Claude.",
+  "owner": {
+    "name": "LIVEIDEA · Martech"
+  },
+  "plugins": [
+    {
+      "name": "id-liveidea",
+      "source": "./",
+      "description": "Skill id-liveidea: aplica o design system da LIVEIDEA em apresentações, documentos e páginas HTML.",
+      "category": "geral"
+    }
+  ]
+}
