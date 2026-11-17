@@ -9,7 +9,10 @@ Esta skill não guarda cores, fontes nem regras de marca. Ela busca a **última 
 GitHub a cada uso, monta um kit de aplicação a partir dela e aplica no formato pedido. Se algo aqui
 divergir do `design-system/README.md` da versão baixada, **o README vence**.
 
-## Passo 0 · Buscar a última versão (obrigatório, toda vez)
+## Passo 0 · Confirmar a última versão (obrigatório, toda vez)
+
+A conferência é sempre feita; o download só acontece quando a versão mudou. O design system muda no máximo a
+cada 15 dias, então na maior parte dos usos a cópia que vem no pacote da skill já é a atual.
 
 ```bash
 bash <skill>/scripts/sync_ds.sh
@@ -28,10 +31,18 @@ bash <skill>/scripts/sync_ds.sh
 tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
 
 **Se o script sair com código 2 (sem acesso ao GitHub), siga nesta ordem:**
-1. **Conector GitHub**, se houver na conversa: leia da `main` `design-system/README.md`, `design-system/tokens.json`,
-   `design-system/CHANGELOG.md`, `design-system/components/bundle.js` e os SVGs de `design-system/assets/Logos`
-   (e `Icones`, se for usar), salve numa pasta com essa mesma estrutura e rode
-   `bash <skill>/scripts/sync_ds.sh --local <pasta>`. Fontes e fotos não precisam vir: a skill usa as da cópia do pacote.
+1. **Conector GitHub**, se houver na conversa. Primeiro só confira, sem ler arquivos:
+   a. Peça ao conector o último commit da `main` que mexeu em `design-system/` (listar commits com
+      `path: design-system`, um resultado). Anote o SHA.
+   b. Rode `bash <skill>/scripts/sync_ds.sh --snapshot-verified <SHA>`. Código 0: a cópia do pacote é a versão
+      atual; siga para o Passo 1 com ela, sem baixar nada.
+   c. Código 4 (a cópia é de outra versão, ou o pacote não tem cópia): aí sim leia da `main`
+      `design-system/README.md`, `design-system/tokens.json`, `design-system/CHANGELOG.md`,
+      `design-system/components/bundle.js` e os SVGs de `design-system/assets/Logos` (e `Icones`, se for usar),
+      salve numa pasta com essa mesma estrutura e rode `bash <skill>/scripts/sync_ds.sh --local <pasta>`. Fontes e
+      fotos não precisam vir: a skill usa as da cópia do pacote. **Diga ao usuário** no início da resposta: "O pacote
+      da skill no claude.ai está desatualizado: reenvie o ZIP da release vX.Y.Z (GitHub > Releases) em
+      Configurações > Capacidades > Skills."
 2. **Sem conector, ou com o conector sem acesso ao repositório: recomende conectar o GitHub** e mostre o
    passo a passo de `references/conectar-github.md`. É o caminho principal.
 3. Se o usuário não puder conectar agora: peça o **ZIP da `main`** (GitHub > Code > Download ZIP) e rode
@@ -45,10 +56,13 @@ tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
 5. **Nunca aplique a marca de memória** nem com valores de uma conversa anterior. Sem nenhuma das fontes acima, pare e explique.
 
 **Cópia do pacote.** O ZIP da skill traz em `<skill>/snapshot/` uma cópia do design system tirada da `main` no
-empacotamento (versão em `snapshot/VERSION`). Além do último caso acima, as fontes dela são a reserva quando a
-versão baixada vem sem os arquivos de fonte; o kit avisa e registra em `manifest.json` (`fonts_from_skill_package`).
-Se a cópia for de uma versão anterior a `DS_VERSION`, avise o usuário que o pacote da skill precisa ser
-reempacotado e reenviado. No Claude Code, dentro do repositório, a cópia não existe: lá a skill lê a `main` direto.
+empacotamento (versão em `snapshot/VERSION`, commit de `design-system/` em `snapshot/DS_COMMIT`). Ela é usada
+sem pedir licença quando o conector confirma que é a versão atual (`--snapshot-verified`); sem essa confirmação,
+só no último caso acima. As fontes dela também são a reserva quando a versão baixada vem sem os arquivos de fonte;
+o kit avisa e registra em `manifest.json` (`fonts_from_skill_package`).
+O script imprime `DS_PACKAGE`: `desatualizada` quer dizer que a cópia difere da versão aplicada; avise o usuário
+para reenviar o ZIP da release `vDS_VERSION`. No Claude Code, dentro do repositório, a cópia não existe
+(`DS_PACKAGE=ausente`): lá a skill lê a `main` direto, em cerca de 2 segundos.
 
 Código 3 = repositório inconsistente (versões divergentes): avise e não siga sem o usuário decidir.
 

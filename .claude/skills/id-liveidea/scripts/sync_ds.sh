@@ -6,6 +6,8 @@
 #   bash sync_ds.sh                    # clona ou atualiza o cache a partir da main e monta o kit
 #   bash sync_ds.sh --from-zip X.zip   # sem acesso ao GitHub: usa o ZIP baixado da main (Code > Download ZIP)
 #   bash sync_ds.sh --local DIR        # usa uma pasta (conteúdo da main lido pelo conector, ou teste local)
+#   bash sync_ds.sh --snapshot-verified SHA  # cópia do ZIP da skill, conferida: SHA é o último commit de design-system/
+#                                            na main (lido pelo conector GitHub) e bate com snapshot/DS_COMMIT
 #   bash sync_ds.sh --snapshot         # ÚLTIMO CASO: cópia que veio no ZIP da skill (só com consentimento do usuário)
 #
 # Variáveis opcionais:
@@ -14,8 +16,10 @@
 #   LIVEIDEA_DS_CACHE  pasta do cache (padrão: ~/.cache/id-liveidea)
 #
 # Saída (stdout, uma por linha, para ler com `eval` ou copiar):
-#   DS_ROOT, DS_DIR, DS_KIT, DS_VERSION, DS_DATE, DS_COMMIT, DS_SOURCE, DS_LATEST_TAG
+#   DS_ROOT, DS_DIR, DS_KIT, DS_VERSION, DS_DATE, DS_COMMIT, DS_SOURCE, DS_LATEST_TAG,
+#   DS_PACKAGE (cópia do pacote: atual · desatualizada · ausente · nao-conferida)
 # Código de saída: 0 ok · 2 sem acesso ao repositório · 3 repositório inconsistente
+#                  4 (--snapshot-verified) a cópia do pacote não é a versão atual: baixe da main
 
 set -euo pipefail
 
@@ -30,6 +34,7 @@ while [ $# -gt 0 ]; do
     --from-zip) MODE="zip"; ARG="${2:?informe o arquivo .zip}"; shift 2 ;;
     --local)    MODE="local"; ARG="${2:?informe a pasta do checkout}"; shift 2 ;;
     --snapshot) MODE="snapshot"; shift ;;
+    --snapshot-verified) MODE="verified"; ARG="${2:?informe o commit de design-system/ na main}"; shift 2 ;;
     -h|--help)  sed -n 2,20p "$0"; exit 0 ;;
     *) echo "Opção desconhecida: $1" >&2; exit 1 ;;
   esac
@@ -37,7 +42,9 @@ done
 
 log() { echo "[liveidea-ds] $*" >&2; }
 mkdir -p "$CACHE"
-ROOT=""; COMMIT="desconhecido"; SOURCE=""; LATEST_TAG=""
+ROOT=""; COMMIT="desconhecido"; SOURCE=""; LATEST_TAG=""; PACKAGE="nao-conferida"
+SNAP_ROOT="$(cd "$HERE/.." && pwd)/snapshot"
+snap_commit() { tr -d '[:space:]' < "$SNAP_ROOT/DS_COMMIT" 2>/dev/null || true; }
 
 case "$MODE" in
   git)
@@ -81,8 +88,25 @@ case "$MODE" in
     SOURCE="local:$(git -C "$ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo pasta)"
     log "ATENÇÃO: usando a pasta $ROOT, não o clone da main. Confirme que ela tem o conteúdo da main (conector GitHub) ou é teste de mudança ainda não mergeada."
     ;;
+  verified)
+    WANT="$(echo "$ARG" | tr -d '[:space:]' | tr 'A-F' 'a-f')"; HAVE="$(snap_commit)"
+    if [ -z "$HAVE" ] || [ ! -f "$SNAP_ROOT/design-system/tokens.json" ]; then
+      log "Este pacote da skill não tem a cópia conferível do design system. Baixe da main (conector ou --from-zip)."
+      exit 4
+    fi
+    if [ "${#WANT}" -lt 7 ] || [ "${HAVE#"$WANT"}" = "$HAVE" ]; then
+      log "A cópia do pacote é de design-system@${HAVE:0:7} e a main está em design-system@${WANT:0:7}."
+      log "Baixe da main (conector ou --from-zip) e avise o usuário: o pacote da skill precisa ser reenviado (ZIP da última release)."
+      exit 4
+    fi
+    ROOT="$SNAP_ROOT"
+    COMMIT="${HAVE:0:7}"
+    SOURCE="copia-do-pacote-conferida"
+    PACKAGE="atual"
+    log "Cópia do pacote conferida: é a versão atual da main (design-system@${HAVE:0:7}). Nada a baixar."
+    ;;
   snapshot)
-    ROOT="$(cd "$HERE/.." && pwd)/snapshot"
+    ROOT="$SNAP_ROOT"
     [ -f "$ROOT/design-system/tokens.json" ] || { log "Este pacote da skill não tem a cópia do design system (snapshot/)."; exit 2; }
     SNAP="$(cat "$ROOT/VERSION" 2>/dev/null || echo 'versão não registrada')"
     COMMIT="$(echo "$SNAP" | grep -oE '@[0-9a-f]{7,}' | tr -d @ || true)"; COMMIT="${COMMIT:-desconhecido}"
@@ -108,6 +132,19 @@ if [ -n "$LATEST_TAG" ] && [ "$LATEST_TAG" != "v$VERSION" ]; then
   log "Aviso: a main está na $VERSION e a última tag é $LATEST_TAG (tag pendente ou main à frente). Vale a main."
 fi
 
+# No modo git, confere se a cópia que veio no pacote da skill (claude.ai) ainda é a versão atual.
+if [ "$MODE" = "git" ] || [ "$MODE" = "local" ] || [ "$MODE" = "zip" ]; then
+  if [ ! -f "$SNAP_ROOT/design-system/tokens.json" ]; then
+    PACKAGE="ausente"
+  elif diff -rq -x Fotografia -x Capas "$SNAP_ROOT/design-system" "$DS" >/dev/null 2>&1; then
+    PACKAGE="atual"
+  else
+    PACKAGE="desatualizada"
+    log "Aviso: a cópia do pacote da skill ($(cat "$SNAP_ROOT/VERSION" 2>/dev/null || echo 'sem VERSION')) difere da versão baixada (v$VERSION)."
+    log "Diga ao usuário: reenvie no claude.ai o ZIP da release v$VERSION (GitHub > Releases)."
+  fi
+fi
+
 KIT="$CACHE/kit"
 # fontTools + brotli leem os nomes de fonte que o Office usa e convertem woff2 -> otf/ttf.
 python3 -c "import fontTools, brotli" 2>/dev/null || pip install --quiet fonttools brotli >/dev/null 2>&1 ||
@@ -123,4 +160,5 @@ DS_DATE="$DATE"
 DS_COMMIT=$COMMIT
 DS_SOURCE=$SOURCE
 DS_LATEST_TAG=$LATEST_TAG
+DS_PACKAGE=$PACKAGE
 EOF

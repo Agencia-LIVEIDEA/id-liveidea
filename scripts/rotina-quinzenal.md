@@ -40,9 +40,14 @@ Use uma pasta de trabalho fora do repositório (o scratchpad da sessão), aqui c
 python3 -I scripts/ds_compare.py --published $W/pub/project --assets $W/assets.txt --report $W/report.json
 ```
 
-- **Código 0 (em sincronia):** rode `python3 scripts/check_skill.py`. Se passar, termine com uma linha
-  ("Design system vX.Y.Z em sincronia; skill em dia"), sem PR e sem notificação. Se falhar, siga para o
-  passo 4 só com a revisão da skill.
+- **Código 0 (em sincronia):** rode `python3 scripts/check_skill.py`. Se falhar, siga para o passo 4 só
+  com a revisão da skill. Se passar, veja a release da versão atual (tag `vX.Y.Z`, `git log -1 --format=%cI vX.Y.Z`):
+  - criada nos últimos 16 dias (versão nova desde a rotina anterior): mande uma notificação curta lembrando de
+    reenviar no claude.ai o ZIP da release, com o link
+    (`https://github.com/Agencia-LIVEIDEA/id-liveidea/releases/tag/vX.Y.Z`). Sem esse reenvio, a skill no
+    claude.ai baixa o design system pelo conector a cada uso;
+  - mais antiga, ou sem tag: termine com uma linha ("Design system vX.Y.Z em sincronia; skill em dia"), sem PR
+    e sem notificação.
 - **Código 10 (há diferenças):** leia `version.relation` no relatório.
   - `repo-a-frente`: o repositório tem versão mais nova que o claude.ai. Não traga nada. Relate que o
     design system do claude.ai precisa ser republicado a partir da `main` e termine.
@@ -97,4 +102,5 @@ python3 -I scripts/ds_compare.py --published $W/pub/project --assets $W/assets.t
    - **Depois do merge:** o GitHub Actions cria a tag `vX.Y.Z` e uma release com o ZIP da skill;
      reenvie esse ZIP no claude.ai (Configurações > Capacidades > Skills). Se a versão foi subida aqui
      (caso `igual`), republique o design system do claude.ai com ela.
-3. Mande uma notificação curta com o link do PR e a versão.
+3. Mande uma notificação curta com o link do PR e a versão, lembrando: depois do merge, reenviar no claude.ai
+   o ZIP da release que o GitHub Actions vai criar. A rotina seguinte lembra de novo.

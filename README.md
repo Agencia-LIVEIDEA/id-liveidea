@@ -84,7 +84,11 @@ repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit 
   serve de reserva para as fontes quando o conector traz só texto e, **em último caso**, para seguir
   sem acesso ao repositório: a skill só usa a cópia com o "sim" do usuário, depois de dizer a versão e a
   data dela, e registra isso na entrega. A ordem é: conector GitHub → ZIP da `main` enviado na conversa
-  → cópia do pacote. A cópia fica fora do git (`.gitignore`): no Claude Code, a skill lê a `main` direto.
+  → cópia do pacote.
+  **Conferir sempre, baixar só quando mudou.** O empacotador grava em `snapshot/DS_COMMIT` o último commit que
+  mexeu em `design-system/`. A cada uso no claude.ai, a skill pede ao conector só esse commit na `main`: se for o
+  mesmo, usa a cópia do pacote sem ler nada (`sync_ds.sh --snapshot-verified <sha>`); se não, lê da `main` e avisa
+  para reenviar o ZIP da release. Mudança só em scripts ou docs não invalida a cópia. A cópia fica fora do git (`.gitignore`): no Claude Code, a skill lê a `main` direto.
   **O ZIP leva fontes licenciadas: uso interno, não compartilhe fora da LIVEIDEA.** Reempacote e reenvie a
   cada versão nova do design system, para a cópia não ficar velha. Se o upload recusar o tamanho
   (~8 MB), gere sem fotos: `bash scripts/package-skill.sh --sem-fotos`.
