@@ -1,0 +1,75 @@
+# Mantém a skill id-liveidea em dia com o design system.
+#
+# - Em todo pull request e push: confere se a skill acompanha a versão do design system
+#   (scripts/check_skill.py). Um PR que sobe o design system para uma MINOR/MAJOR nova sem revisar a
+#   skill fica vermelho.
+# - Em push na main: empacota a skill (dist/id-liveidea.zip, com a cópia do design system da main) e
+#   publica como artefato do workflow. Quando a versão é nova, cria a tag vX.Y.Z e uma release com o ZIP,
+#   pronto para reenviar no claude.ai (Configurações > Capacidades > Skills).
+#
+# O ZIP leva fontes licenciadas: a release e o artefato ficam neste repositório privado, de uso interno.
+name: Skill id-liveidea
+
+on:
+  push:
+    branches: [main]
+    paths: ["design-system/**", ".claude/skills/**", "scripts/**", ".github/workflows/skill.yml"]
+  pull_request:
+    paths: ["design-system/**", ".claude/skills/**", "scripts/**", ".github/workflows/skill.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conferir:
+    name: Conferir skill × design system
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependências dos helpers
+        run: pip install --quiet python-pptx python-docx fonttools brotli pillow
+      - name: Conferir
+        run: python3 scripts/check_skill.py
+
+  empacotar:
+    name: Empacotar e publicar a skill
+    needs: conferir
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Empacotar
+        id: pack
+        run: |
+          bash scripts/package-skill.sh
+          VERSION="$(python3 -c 'import json; print(json.load(open("design-system/tokens.json"))["meta"]["release"])')"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          cp dist/id-liveidea.zip "dist/id-liveidea-v$VERSION.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: id-liveidea-skill-v${{ steps.pack.outputs.version }}
+          path: dist/id-liveidea.zip
+          retention-days: 90
+      - name: Tag e release da versão nova
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.pack.outputs.version }}
+        run: |
+          TAG="v$VERSION"
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "A tag $TAG já existe: só o artefato do workflow foi atualizado."
+            exit 0
+          fi
+          awk -v v="$VERSION" '$0 ~ "^## "v {f=1; next} f && /^## / {exit} f' design-system/CHANGELOG.md > notas.md
+          printf '\n---\nSkill empacotada com a cópia do design system desta versão. Reenvie `id-liveidea-v%s.zip` no claude.ai (Configurações > Capacidades > Skills). Contém fontes licenciadas: uso interno da LIVEIDEA.\n' "$VERSION" >> notas.md
+          git tag "$TAG" "$GITHUB_SHA"
+          git push origin "$TAG"
+          gh release create "$TAG" "dist/id-liveidea-v$VERSION.zip" --title "Design system $TAG" --notes-file notas.md

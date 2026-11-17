@@ -7,7 +7,8 @@
 #   - as fontes da cópia são a reserva quando a versão baixada vem sem fontes (conector que só lê texto);
 #   - último caso: sem nenhum acesso ao repositório, e só com o consentimento do usuário, a skill
 #     aplica a marca a partir dessa cópia (sync_ds.sh --snapshot), avisando versão e data.
-# Em uso normal, tudo continua vindo da main a cada uso.
+# A cada uso a skill confere o último commit de design-system/ na main contra snapshot/DS_COMMIT: se for o
+# mesmo, usa esta cópia sem baixar nada; se não, baixa da main e pede o reenvio do ZIP.
 #
 # Fontes licenciadas (Acumin Pro ExtraCondensed, PP Editorial New, Aeonik): o ZIP é de uso interno da
 # LIVEIDEA. Não publique nem envie para fora da agência.
@@ -32,6 +33,10 @@ git -C "$ROOT" fetch --quiet origin "$REF"
 COMMIT="$(git -C "$ROOT" rev-parse --short FETCH_HEAD)"
 VERSION="$(git -C "$ROOT" show FETCH_HEAD:design-system/tokens.json | python3 -c 'import json,sys; print(json.load(sys.stdin)["meta"]["release"])')"
 DATE="$(git -C "$ROOT" show FETCH_HEAD:design-system/CHANGELOG.md | grep -m1 -E '^## [0-9]+\.[0-9]+\.[0-9]+' | sed -E 's/^## [0-9.]+ · ?//')"
+# Último commit da main que mexeu em design-system/: é com ele que a skill confere, a cada uso, se esta
+# cópia ainda é a versão atual (mudança só em scripts ou docs não invalida a cópia).
+DS_COMMIT="$(git -C "$ROOT" log -1 --format=%H FETCH_HEAD -- design-system)"
+[ -n "$DS_COMMIT" ] || { echo "Não achei commit de design-system/ em $REF (histórico raso? rode git fetch --unshallow)" >&2; exit 1; }
 
 SK="$TMP/id-liveidea"
 mkdir -p "$SK"
@@ -40,8 +45,10 @@ rm -rf "$SK/snapshot" "$SK/fonts"
 mkdir -p "$SK/snapshot"
 git -C "$ROOT" archive FETCH_HEAD design-system | tar -x -C "$SK/snapshot"
 if [ "$NO_PHOTOS" = 1 ]; then rm -rf "$SK/snapshot/design-system/assets/Fotografia" "$SK/snapshot/design-system/assets/Capas"; fi
-printf 'v%s · %s · %s@%s · empacotado em %s%s\n' "$VERSION" "$DATE" "$REF" "$COMMIT" "$(date -u +%Y-%m-%d)" \
+printf 'v%s · %s · %s@%s · design-system@%s · empacotado em %s%s\n' "$VERSION" "$DATE" "$REF" "$COMMIT" "${DS_COMMIT:0:7}" "$(date -u +%Y-%m-%d)" \
   "$([ "$NO_PHOTOS" = 1 ] && echo ' · sem fotos' || true)" > "$SK/snapshot/VERSION"
+
+echo "$DS_COMMIT" > "$SK/snapshot/DS_COMMIT"
 
 mkdir -p "$OUT"
 rm -f "$OUT/id-liveidea.zip"

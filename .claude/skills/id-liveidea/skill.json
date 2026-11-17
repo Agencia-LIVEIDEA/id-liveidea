@@ -1,0 +1,30 @@
+{
+  "design_system_revisado": "1.2.0",
+  "revisado_em": "2026-11-17",
+  "componentes": [
+    "AplicacaoFotos",
+    "ArrowLink",
+    "Button",
+    "CaseHeader",
+    "Chrome",
+    "Display",
+    "Eyebrow",
+    "Ghost",
+    "Headline",
+    "Icon",
+    "Logo",
+    "NumberedList",
+    "Photo",
+    "PhotoGrid",
+    "PillarList",
+    "PressCard",
+    "ProgressBar",
+    "PropostaCriativa",
+    "ReadPill",
+    "Stamp",
+    "Stat",
+    "Steps",
+    "TeamCard"
+  ],
+  "_nota": "Atualize ao revisar a skill para uma versão nova do design system. scripts/check_skill.py falha se o design system passar desta versão (MINOR ou MAJOR) ou ganhar componente que não está nesta lista."
+}
