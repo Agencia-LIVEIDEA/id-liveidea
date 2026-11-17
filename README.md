@@ -18,6 +18,8 @@ apresentação institucional, apresentações de projeto, site, documentos e red
 ## Estrutura
 
 ```
+.claude-plugin/            loja id-liveidea (marketplace.json) e o plugin (plugin.json)
+.claude/skills/id-liveidea/ skill que aplica o design system
 design-system/
 ├── README.md              brand book
 ├── CHANGELOG.md           histórico de versões (semver)
@@ -60,6 +62,17 @@ Ela não guarda cores, fontes nem regras: a cada uso, baixa a **última versão 
 repositório, confere a versão (`tokens.json` × `CHANGELOG.md`), monta um kit e informa a versão aplicada.
 
 - **Claude Code neste repositório:** a skill já está em `.claude/skills/` e carrega sozinha.
+- **Como plugin (loja `id-liveidea`), no claude.ai ou no Claude Code.** Este repositório também é uma loja de
+  plugins (`.claude-plugin/marketplace.json`), com o plugin `id-liveidea`, que é o próprio repositório. Ele substitui
+  o upload do ZIP: a cada merge na `main`, a loja sincroniza e o plugin se atualiza sozinho.
+  - claude.ai: em **Adicionar marketplace**, informe `Agencia-LIVEIDEA/id-liveidea` e deixe **Sincronizar
+    automaticamente** ligado.
+  - Claude Code: `claude plugin marketplace add Agencia-LIVEIDEA/id-liveidea` e
+    `claude plugin install id-liveidea@id-liveidea`.
+  - O plugin leva o `design-system/` da `main` (com as fontes licenciadas): ele faz o papel da cópia do ZIP como
+    reserva de fontes e último caso. A conferência da versão continua igual (conector GitHub ou git).
+  - O `plugin.json` não tem `version` de propósito: a versão do plugin é o commit, então todo merge vira atualização.
+  - A skill também está no plugin `live-geral` (loja `live-agentes`). Use uma das duas, para não ter a skill repetida.
 - **claude.ai (Configurações > Capacidades > Skills):** rode `bash scripts/package-skill.sh` e envie
   `dist/id-liveidea.zip`. Lá, o acesso ao repositório privado vem do conector GitHub (veja abaixo); sem
   ele, a skill pede o ZIP da `main` e não aplica a marca de memória.

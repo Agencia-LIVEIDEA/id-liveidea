@@ -42,7 +42,8 @@ tag `vX.Y.Z` estiver atrás da `main`, vale a `main` (o script avisa).
       salve numa pasta com essa mesma estrutura e rode `bash <skill>/scripts/sync_ds.sh --local <pasta>`. Fontes e
       fotos não precisam vir: a skill usa as da cópia do pacote. **Diga ao usuário** no início da resposta: "O pacote
       da skill no claude.ai está desatualizado: reenvie o ZIP da release vX.Y.Z (GitHub > Releases) em
-      Configurações > Capacidades > Skills."
+      Configurações > Capacidades > Skills." **Exceção:** se o script disse que a skill está instalada como plugin,
+      não peça o reenvio do ZIP (o plugin se atualiza com a loja `id-liveidea`).
 2. **Sem conector, ou com o conector sem acesso ao repositório: recomende conectar o GitHub** e mostre o
    passo a passo de `references/conectar-github.md`. É o caminho principal.
 3. Se o usuário não puder conectar agora: peça o **ZIP da `main`** (GitHub > Code > Download ZIP) e rode
@@ -63,6 +64,12 @@ o kit avisa e registra em `manifest.json` (`fonts_from_skill_package`).
 O script imprime `DS_PACKAGE`: `desatualizada` quer dizer que a cópia difere da versão aplicada; avise o usuário
 para reenviar o ZIP da release `vDS_VERSION`. No Claude Code, dentro do repositório, a cópia não existe
 (`DS_PACKAGE=ausente`): lá a skill lê a `main` direto, em cerca de 2 segundos.
+
+**Instalada como plugin** (loja `id-liveidea`, no claude.ai ou no Claude Code), não existe `snapshot/`: o plugin
+traz o `design-system/` da `main` do momento da última sincronização, e o script usa essa cópia no lugar da do
+pacote (fontes de reserva e último caso). Ela não é conferível por commit, então `--snapshot-verified` sai com
+código 4 e a skill lê da `main`. Se `DS_PACKAGE=desatualizada`, peça para sincronizar a loja `id-liveidea`, não
+para reenviar ZIP.
 
 Código 3 = repositório inconsistente (versões divergentes): avise e não siga sem o usuário decidir.
 

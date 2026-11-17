@@ -10,6 +10,9 @@
 #                                            na main (lido pelo conector GitHub) e bate com snapshot/DS_COMMIT
 #   bash sync_ds.sh --snapshot         # ÚLTIMO CASO: cópia que veio no ZIP da skill (só com consentimento do usuário)
 #
+# Instalada como plugin (loja id-liveidea, claude.ai ou Claude Code), a skill não tem snapshot/: o próprio
+# plugin traz o design-system/ da main do momento da sincronização, e ele faz o papel da cópia do pacote.
+#
 # Variáveis opcionais:
 #   LIVEIDEA_DS_REPO   URL do repositório (padrão: https://github.com/Agencia-LIVEIDEA/id-liveidea.git)
 #   LIVEIDEA_DS_BRANCH branch de referência (padrão: main)
@@ -44,7 +47,15 @@ log() { echo "[liveidea-ds] $*" >&2; }
 mkdir -p "$CACHE"
 ROOT=""; COMMIT="desconhecido"; SOURCE=""; LATEST_TAG=""; PACKAGE="nao-conferida"
 SNAP_ROOT="$(cd "$HERE/.." && pwd)/snapshot"
-snap_commit() { tr -d '[:space:]' < "$SNAP_ROOT/DS_COMMIT" 2>/dev/null || true; }
+snap_commit() { tr -d '[:space:]' 2>/dev/null < "$SNAP_ROOT/DS_COMMIT" || true; }
+# Plugin: a raiz do plugin é a raiz do repositório (scripts -> id-liveidea -> skills -> .claude -> raiz).
+# Só vale fora de um checkout git, para nunca usar o checkout de trabalho como cópia.
+COPY_KIND="pacote"
+PLUGIN_ROOT="$(cd "$HERE/../../../.." && pwd)"
+if [ ! -f "$SNAP_ROOT/design-system/tokens.json" ] && [ -f "$PLUGIN_ROOT/.claude-plugin/plugin.json" ] &&
+   [ -f "$PLUGIN_ROOT/design-system/tokens.json" ] && [ ! -e "$PLUGIN_ROOT/.git" ]; then
+  SNAP_ROOT="$PLUGIN_ROOT"; COPY_KIND="plugin"
+fi
 
 case "$MODE" in
   git)
@@ -90,6 +101,11 @@ case "$MODE" in
     ;;
   verified)
     WANT="$(echo "$ARG" | tr -d '[:space:]' | tr 'A-F' 'a-f')"; HAVE="$(snap_commit)"
+    if [ "$COPY_KIND" = "plugin" ]; then
+      log "Skill instalada como plugin: a cópia do plugin não é conferível por commit. Baixe da main (conector ou --from-zip)."
+      log "Não peça reenvio de ZIP: o plugin se atualiza sozinho quando a loja id-liveidea sincroniza."
+      exit 4
+    fi
     if [ -z "$HAVE" ] || [ ! -f "$SNAP_ROOT/design-system/tokens.json" ]; then
       log "Este pacote da skill não tem a cópia conferível do design system. Baixe da main (conector ou --from-zip)."
       exit 4
@@ -108,7 +124,11 @@ case "$MODE" in
   snapshot)
     ROOT="$SNAP_ROOT"
     [ -f "$ROOT/design-system/tokens.json" ] || { log "Este pacote da skill não tem a cópia do design system (snapshot/)."; exit 2; }
-    SNAP="$(cat "$ROOT/VERSION" 2>/dev/null || echo 'versão não registrada')"
+    if [ "$COPY_KIND" = "plugin" ]; then
+      SNAP="v$(python3 -I -c 'import json,sys; print(json.load(open(sys.argv[1]))["meta"].get("release","?"))' "$ROOT/design-system/tokens.json") · cópia do plugin id-liveidea"
+    else
+      SNAP="$(cat "$ROOT/VERSION" 2>/dev/null || echo 'versão não registrada')"
+    fi
     COMMIT="$(echo "$SNAP" | grep -oE '@[0-9a-f]{7,}' | tr -d @ || true)"; COMMIT="${COMMIT:-desconhecido}"
     SOURCE="copia-do-pacote"
     log "ÚLTIMO CASO: usando a cópia do design system que veio no pacote da skill ($SNAP)."
@@ -136,12 +156,22 @@ fi
 if [ "$MODE" = "git" ] || [ "$MODE" = "local" ] || [ "$MODE" = "zip" ]; then
   if [ ! -f "$SNAP_ROOT/design-system/tokens.json" ]; then
     PACKAGE="ausente"
+  elif [ "$COPY_KIND" = "plugin" ] && [ "$MODE" = "local" ] &&
+       cmp -s "$SNAP_ROOT/design-system/tokens.json" "$DS/tokens.json" &&
+       cmp -s "$SNAP_ROOT/design-system/CHANGELOG.md" "$DS/CHANGELOG.md"; then
+    # Conector: a pasta baixada só tem os textos (sem fontes nem fotos). Compara o que define a versão.
+    PACKAGE="atual"
   elif diff -rq -x Fotografia -x Capas "$SNAP_ROOT/design-system" "$DS" >/dev/null 2>&1; then
     PACKAGE="atual"
   else
     PACKAGE="desatualizada"
-    log "Aviso: a cópia do pacote da skill ($(cat "$SNAP_ROOT/VERSION" 2>/dev/null || echo 'sem VERSION')) difere da versão baixada (v$VERSION)."
-    log "Diga ao usuário: reenvie no claude.ai o ZIP da release v$VERSION (GitHub > Releases)."
+    if [ "$COPY_KIND" = "plugin" ]; then
+      log "Aviso: a cópia do plugin id-liveidea difere da versão baixada (v$VERSION)."
+      log "Diga ao usuário: sincronize a loja id-liveidea (claude.ai: Sincronizar; Claude Code: claude plugin marketplace update id-liveidea)."
+    else
+      log "Aviso: a cópia do pacote da skill ($(cat "$SNAP_ROOT/VERSION" 2>/dev/null || echo 'sem VERSION')) difere da versão baixada (v$VERSION)."
+      log "Diga ao usuário: reenvie no claude.ai o ZIP da release v$VERSION (GitHub > Releases)."
+    fi
   fi
 fi
 
