@@ -99,6 +99,9 @@ esta skill para tudo o que é marca. Para peças de redes e Ghost/lettering em P
 ## Quando a versão for mais nova que os helpers
 
 `liveidea_pptx.py` traz modelos de página (capas, abertura, fechamento) medidos na versão indicada em
-`TEMPLATES_FROM`. Se o kit for de uma versão MINOR ou MAJOR mais nova, o helper avisa. Leia o
+`TEMPLATES_FROM`, e `skill.json` registra para qual versão do design system a skill inteira foi revisada
+(`design_system_revisado`). A rotina quinzenal do repositório revisa a skill a cada versão nova, mas entre
+o merge do design system e o da revisão pode haver uma janela. Se `DS_VERSION` for MINOR ou MAJOR mais nova
+que `design_system_revisado`, diga isso ao usuário. Se o kit for mais novo que `TEMPLATES_FROM`, o helper avisa. Leia o
 CHANGELOG desde aquela versão; se capa, Ghost, Chrome, grid ou tipografia mudaram, ajuste a chamada
 (ou o helper) para a regra nova antes de gerar e diga ao usuário que ajustou.

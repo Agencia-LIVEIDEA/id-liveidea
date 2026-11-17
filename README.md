@@ -102,6 +102,27 @@ Mudança de MINOR/PATCH no design system não exige mudar a skill. Se uma versã
 Chrome ou grid, revise os modelos de `liveidea_pptx.py` e suba `TEMPLATES_FROM` no mesmo PR: o helper
 avisa quando o kit é mais novo que os modelos.
 
+## Atualização automática da skill
+
+A skill acompanha o design system em três camadas:
+
+| Quando | O quê | Onde |
+|---|---|---|
+| Dias 1 e 16 de cada mês, 7h17 (Brasília) | Tarefa agendada do Claude compara o design system do claude.ai com `design-system/`. Se mudou, traz a mudança, revisa a skill e abre um PR. Se nada mudou, termina em silêncio. | [`scripts/rotina-quinzenal.md`](scripts/rotina-quinzenal.md) |
+| Todo PR e push | GitHub Actions roda `scripts/check_skill.py`: o PR fica vermelho se o design system subir de MINOR/MAJOR sem a skill ser revisada, ou ganhar componente que a skill não conhece. | [`.github/workflows/skill.yml`](.github/workflows/skill.yml) |
+| Merge na `main` | O Actions empacota a skill com a cópia da versão nova. Versão nova ganha tag `vX.Y.Z` e release com o ZIP para reenviar no claude.ai. | Releases do repositório |
+
+- **Versão revisada.** `.claude/skills/id-liveidea/skill.json` registra para qual versão do design system a
+  skill foi revisada (`design_system_revisado`) e quais componentes ela conhece. Ao revisar a skill, atualize
+  esse arquivo no mesmo PR.
+- **Ferramentas.** `scripts/ds_compare.py` compara (e, com `--apply`, aplica) o que está publicado no claude.ai
+  com `design-system/`, inclusive fotos, logos e ícones pelo sha256 do asset store. `scripts/check_skill.py`
+  confere versões, componentes e monta o kit para testar os helpers de PowerPoint e Word.
+- **O que continua manual.** Fazer o merge do PR da rotina (revisão humana, de propósito: o conteúdo do
+  artifact pode ter sido publicado por outras pessoas) e reenviar o ZIP da release no claude.ai. No Claude
+  Code a skill já lê a `main` a cada uso, então o merge basta.
+- **Rodar à mão.** Numa sessão do Claude Code neste repositório: "rode a rotina quinzenal do design system".
+
 ## Versionamento
 
 Versão atual: **1.2.0** (ver [`design-system/CHANGELOG.md`](design-system/CHANGELOG.md)).
